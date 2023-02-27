@@ -25,4 +25,15 @@ deploy to s3:
   only:
     - release
 
+# clear s3 cache:
+#   stage: deploy
+#   image: 
+#     name: amazon/aws-cli
+#     entrypoint: [""]
+#   script:
+#     - aws --version
+#     # clear cloudfront cache to instantly show changes
+#   only:
+#     - release
+
 
