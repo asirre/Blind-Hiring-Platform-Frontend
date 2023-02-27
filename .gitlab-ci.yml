@@ -21,7 +21,7 @@ deploy to s3:
     entrypoint: [""]
   script:
     - aws --version
-    - aws s3 sync * s3://$S3_BUCKET --recursive
+    - aws s3 sync public/ s3://$S3_BUCKET --delete
   only:
     - release
 
