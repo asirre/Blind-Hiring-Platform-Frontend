@@ -1,18 +1,19 @@
 stages:
-#   - build
+  - build
 #   - test
   - deploy
 
-# build website:
-#   stage: build
-#   image: node:19
-#   script:
-#     - npm install
-#     - npm install -g react?
-#     - react build?
-#   artifacts:
-#     paths:
-#       - public  
+build website:
+  stage: build
+  image: node:19
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - build  
+  only:
+    - release
 
 deploy to s3:
   stage: deploy
@@ -21,7 +22,7 @@ deploy to s3:
     entrypoint: [""]
   script:
     - aws --version
-    - aws s3 sync public/ s3://$S3_BUCKET --delete
+    - aws s3 sync build/ s3://$S3_BUCKET --delete
   only:
     - release
 
