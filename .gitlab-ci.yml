@@ -1,39 +1,41 @@
 stages:
-#   - build
+  - build
 #   - test
   - deploy
+  - clear-cache
 
-# build website:
-#   stage: build
-#   image: node:19
-#   script:
-#     - npm install
-#     - npm install -g react?
-#     - react build?
-#   artifacts:
-#     paths:
-#       - public  
+build-website:
+  stage: build
+  image: node:19
+  script:
+    - yarn install
+    - yarn build
+  artifacts:
+    paths:
+      - build/
+  only:
+    - release
 
-deploy to s3:
+deploy-to-s3:
   stage: deploy
   image: 
     name: amazon/aws-cli
     entrypoint: [""]
   script:
     - aws --version
-    - aws s3 sync public/ s3://$S3_BUCKET --delete
+    - aws s3 sync build/ s3://$S3_BUCKET --delete
   only:
     - release
 
-# clear s3 cache:
-#   stage: deploy
-#   image: 
-#     name: amazon/aws-cli
-#     entrypoint: [""]
-#   script:
-#     - aws --version
-#     # clear cloudfront cache to instantly show changes
-#   only:
-#     - release
+clear-s3-cache:
+  stage: clear-cache
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
+  script:
+    - aws --version
+    - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
+  only:
+    - release
 
 
