@@ -2,8 +2,9 @@ stages:
   - build
 #   - test
   - deploy
+  - clear-cache
 
-build website:
+build-website:
   stage: build
   image: node:19
   script:
@@ -15,7 +16,7 @@ build website:
   only:
     - release
 
-deploy to s3:
+deploy-to-s3:
   stage: deploy
   image: 
     name: amazon/aws-cli
@@ -26,15 +27,15 @@ deploy to s3:
   only:
     - release
 
-# clear s3 cache:
-#   stage: deploy
-#   image: 
-#     name: amazon/aws-cli
-#     entrypoint: [""]
-#   script:
-#     - aws --version
-#     # clear cloudfront cache to instantly show changes
-#   only:
-#     - release
+clear-s3-cache:
+  stage: clear-cache
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
+  script:
+    - aws --version
+    - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
+  only:
+    - release
 
 
