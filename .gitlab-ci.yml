@@ -1,0 +1,39 @@
+stages:
+#   - build
+#   - test
+  - deploy
+
+# build website:
+#   stage: build
+#   image: node:19
+#   script:
+#     - npm install
+#     - npm install -g react?
+#     - react build?
+#   artifacts:
+#     paths:
+#       - public  
+
+deploy to s3:
+  stage: deploy
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
+  script:
+    - aws --version
+    - aws s3 sync public/ s3://$S3_BUCKET --delete
+  only:
+    - release
+
+# clear s3 cache:
+#   stage: deploy
+#   image: 
+#     name: amazon/aws-cli
+#     entrypoint: [""]
+#   script:
+#     - aws --version
+#     # clear cloudfront cache to instantly show changes
+#   only:
+#     - release
+
+
