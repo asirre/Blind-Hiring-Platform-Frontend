@@ -7,11 +7,11 @@ build website:
   stage: build
   image: node:19
   script:
-    - npm install
-    - npm run build
+    - yarn install
+    - yarn build
   artifacts:
     paths:
-      - build  
+      - build/
   only:
     - release
 
