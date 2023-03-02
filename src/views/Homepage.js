@@ -1,18 +1,10 @@
-import {
-  CButton,
-  CNav,
-  CCol,
-  CRow,
-  CCard,
-  CCardText,
-  CCardBody,
-} from "@coreui/react";
+import { CButton, CCol, CCard, CCardText, CCardBody } from "@coreui/react";
 import bg from "../img/bg.jpg";
 import BottomInfo from "../utils/BottomInfo";
 
 const Homepage = () => {
   return (
-    <div style={{ height: "50em", width: "100%%" }}>
+    <div style={{ height: "10%", width: "100%" }}>
       <CCol
         style={{
           backgroundImage: `url(${bg})`,
@@ -35,7 +27,7 @@ const Homepage = () => {
         >
           <CCardBody>
             <CCardText>Level the playing field for all candidates</CCardText>
-            <CButton style={{ color: "#a8d5e5" }} color="light" href="#">
+            <CButton style={{ color: "#2596be" }} color="light" href="#">
               Try now
             </CButton>
           </CCardBody>
