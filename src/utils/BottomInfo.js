@@ -38,7 +38,6 @@ const BottomInfo = () => {
           style={{
             position: "absolute",
             marginLeft: "70%",
-            width: "25rem",
             color: "grey",
             background: "transparent",
             border: "none",

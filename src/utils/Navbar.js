@@ -2,7 +2,11 @@ import { CNavLink, CNav, CCol, CRow } from "@coreui/react";
 
 const Navbar = () => {
   return (
-    <CNav component="nav" variant="pills">
+    <CNav
+      component="nav"
+      variant="pills"
+      style={{ height: "3.5rem", paddingTop: "0.5rem" }}
+    >
       <CCol>
         <CNavLink style={{ marginRight: "40%", color: "grey" }} href="#">
           Logo
