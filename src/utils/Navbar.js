@@ -1,4 +1,6 @@
-import { CNavLink, CNav } from "@coreui/react";
+import { CNavLink, CNav,  } from "@coreui/react";
+import CIcon from "@coreui/icons-react";
+import { cilUser } from '@coreui/icons';
 
 const Navbar = ({ isLoggedIn }) => {
 
@@ -9,7 +11,7 @@ const Navbar = ({ isLoggedIn }) => {
         component="nav"
         variant="pills"
         layout="fill"
-        style={{ height: "6vh", paddingTop: "0.20vh" }}
+        style={{ height: "6vh", paddingTop: "0.5vh" }}
       >
         <CNavLink style={{ color: "grey" }} href="#">
           Logo
@@ -21,11 +23,8 @@ const Navbar = ({ isLoggedIn }) => {
         <CNavLink style={{ color: "grey" }} href="matches">
           My matches
         </CNavLink>
-
-        <CNavLink style={{ color: "grey" }} href="products">
-
-        </CNavLink>
         <CNavLink style={{ color: "grey" }} href="account">
+        <CIcon icon={cilUser} style={{marginRight: "0.5vw"}} size="lg"/>
           My account
         </CNavLink>
       </CNav>
