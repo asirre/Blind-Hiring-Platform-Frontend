@@ -15,7 +15,7 @@ const Homepage = () => {
             height: "65vh",
           }}
         >
-          <CCard
+          <CCard className="text-center"
             style={{
               color: "white",
               position: "absolute",
@@ -29,8 +29,7 @@ const Homepage = () => {
             }}
           >
             <CCardBody>
-              <CCardText style={{textAlign: "center"}}>Level the playing field for all candidates</CCardText>
-              <div style={{paddingLeft: "auto"}}>
+              <CCardText >Level the playing field for all candidates</CCardText>
               <CButton
                 style={{ color: "#2596be" }}
                 color="light"
@@ -38,7 +37,6 @@ const Homepage = () => {
               >
                 Try now
               </CButton>
-              </div>
             </CCardBody>
           </CCard>
         </CCol>
