@@ -6,30 +6,31 @@ import Navbar from "../utils/Navbar"
 const Homepage = () => {
   return (
     <>
-      <Navbar />
-      <div style={{ height: "10%", width: "100%" }}>
+      <Navbar isLoggedIn={false} />
+      <div style={{ height: "10vh", width: "100vw" }}>
         <CCol
           style={{
             backgroundImage: `url(${bg})`,
             backgroundSize: "100% 100%",
-            height: "40em",
+            height: "65vh",
           }}
         >
           <CCard
             style={{
               color: "white",
               position: "absolute",
-              width: "25rem",
+              width: "30vw",
               background: "transparent",
               border: "none",
-              marginTop: "7rem",
-              marginLeft: "60%",
-              marginRight: "20%",
-              fontSize: "3.5rem",
+              marginTop: "7vh",
+              marginLeft: "55vw",
+              marginRight: "15vw",
+              fontSize: "4vw",
             }}
           >
             <CCardBody>
-              <CCardText>Level the playing field for all candidates</CCardText>
+              <CCardText style={{textAlign: "center"}}>Level the playing field for all candidates</CCardText>
+              <div style={{paddingLeft: "auto"}}>
               <CButton
                 style={{ color: "#2596be" }}
                 color="light"
@@ -37,6 +38,7 @@ const Homepage = () => {
               >
                 Try now
               </CButton>
+              </div>
             </CCardBody>
           </CCard>
         </CCol>
