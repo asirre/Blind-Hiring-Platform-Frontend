@@ -27,9 +27,9 @@ const BottomInfo = () => {
           }}
         >
           <CCardBody>
-            <CCardTitle style={{fontSize: "1.5vw"}} >Company name</CCardTitle>
+            <CCardTitle style={{fontSize: "1.5vw"}} >Blind Hiring</CCardTitle>
             <CCardText style={{fontSize: "1vw"}} >Address: Science Park, Amsterdam</CCardText>
-            <CCardText style={{fontSize: "1vw"}} >Email support@corporate.cc</CCardText>
+            <CCardText style={{fontSize: "1vw"}} >Email: bhsupport@email.com</CCardText>
             {/* <CIcon icon={cibTwitter} size="xl" /> */}
           </CCardBody>
         </CCard>
