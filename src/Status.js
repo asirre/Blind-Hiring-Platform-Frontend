@@ -4,7 +4,7 @@ import { AccountContext } from './Account';
 const Status = () => {
   const [status, setStatus] = useState(false);
 
-  const { getSession } = useContext(AccountContext);
+  const { getSession, logout } = useContext(AccountContext);
 
   useEffect(()=> {
     getSession()
@@ -16,7 +16,7 @@ const Status = () => {
 
   return(
     <div>
-      {status? "Logged in! ":" Please log in."}
+      {status? <button onClick={logout}>logout</button>:" Please log in."}
     </div>
   );
 
