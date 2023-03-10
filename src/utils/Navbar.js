@@ -32,7 +32,7 @@ const Navbar = () => {
         </CRow>
       </CCol>
       <CCol>
-        <CNavLink style={{ marginLeft: "40%", color: "grey" }} href="user">
+        <CNavLink style={{ marginLeft: "40%", color: "grey" }} href="login">
           Log in
         </CNavLink>
       </CCol>

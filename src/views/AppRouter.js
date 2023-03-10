@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import React from "react";
-import routes from "../utils/rutes";
+import routes from "../utils/routes";
 
 const AppRouter = () => {
   return (
