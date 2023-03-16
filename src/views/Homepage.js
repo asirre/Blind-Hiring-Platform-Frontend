@@ -33,7 +33,7 @@ const Homepage = () => {
               <CButton
                 style={{ color: "#2596be" }}
                 color="light"
-                href="/register"
+                href="/signup"
               >
                 Try now
               </CButton>
