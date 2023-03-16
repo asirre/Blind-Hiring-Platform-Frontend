@@ -4,7 +4,7 @@ import { cilUser } from '@coreui/icons';
 
 const Navbar = ({ isLoggedIn }) => {
 
-  if (true) {
+  if (false) {
     return (
       <CNav
         className="justify-content-space-evenly"
@@ -19,7 +19,6 @@ const Navbar = ({ isLoggedIn }) => {
         <CNavLink style={{ color: "grey" }} href="listings">
           Job Listings
         </CNavLink>
-
         <CNavLink style={{ color: "grey" }} href="matches">
           My matches
         </CNavLink>
@@ -39,6 +38,9 @@ const Navbar = ({ isLoggedIn }) => {
       >
         <CNavLink style={{ color: "grey", marginLeft:"10vw" }} href="#">
           Logo
+        </CNavLink>
+        <CNavLink style={{ marginLeft: "40%", color: "grey" }} href="login">
+          Log in
         </CNavLink>
         </CNav>
     </>
