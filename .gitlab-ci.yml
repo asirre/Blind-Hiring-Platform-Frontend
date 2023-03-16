@@ -1,41 +1,26 @@
 stages:
   - build
-#   - test
-  - deploy
-  - clear-cache
 
-build-website:
+variables:
+  IMAGE_NAME: crawler
+  TAG_LATEST: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME:latest
+  TAG_COMMIT: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME:$CI_COMMIT_SHORT_SHA
+  DOCKER_TLS_CERTDIR: ""
+
+docker:
+  image: docker:stable
   stage: build
-  image: node:19
-  script:
-    - yarn install
-    - yarn build
-  artifacts:
-    paths:
-      - build/
   only:
-    - release
-
-deploy-to-s3:
-  stage: deploy
-  image: 
-    name: amazon/aws-cli
-    entrypoint: [""]
+    - master
+  services:
+    - docker:dind
+  before_script:
+    - apk add --no-cache python3 py3-pip
+    - pip3 install --no-cache-dir awscli
   script:
-    - aws --version
-    - aws s3 sync build/ s3://$S3_BUCKET --delete
-  only:
-    - release
-
-clear-s3-cache:
-  stage: clear-cache
-  image: 
-    name: amazon/aws-cli
-    entrypoint: [""]
-  script:
-    - aws --version
-    - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
-  only:
-    - release
-
-
+    - aws ecr get-login-password --region $AWS_DEFAULT_REGION |
+      docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+    - docker pull $TAG_LATEST || true
+    - docker build --cache-from $TAG_LATEST -t $TAG_COMMIT -t $TAG_LATEST .
+    - docker push $TAG_COMMIT
+    - docker push $TAG_LATEST
