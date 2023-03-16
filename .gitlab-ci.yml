@@ -11,7 +11,7 @@ docker:
   image: docker:stable
   stage: build
   only:
-    - master
+    - release
   services:
     - docker:dind
   before_script:
