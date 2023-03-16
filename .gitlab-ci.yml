@@ -2,7 +2,7 @@ stages:
   - build
 
 variables:
-  IMAGE_NAME: crawler
+  IMAGE_NAME: webapp
   TAG_LATEST: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME:latest
   TAG_COMMIT: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME:$CI_COMMIT_SHORT_SHA
   DOCKER_TLS_CERTDIR: ""
@@ -11,7 +11,7 @@ docker:
   image: docker:stable
   stage: build
   only:
-    - release
+    - main
   services:
     - docker:dind
   before_script:
