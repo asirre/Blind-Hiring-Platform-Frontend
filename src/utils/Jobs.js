@@ -1,48 +1,21 @@
-import { CCardGroup, CRow } from "@coreui/react";
+import { CCardGroup, CRow, CButton } from "@coreui/react";
+import React, { useEffect, useMemo, useState, Spinner } from "react";
 import { useMutation } from "@tanstack/react-query";
 // import AsyncSelect from "react-select/async";
 import Job from "./Job";
 import { getAllJobs } from "../utils/get_all_jobs_example";
 
 const Jobs = () => {
-  const getData = async () => {
-    const response = await getAllJobs();
-    return console.log(response.data);
-  };
+  const [jobs, setJobs] = useState([]);
 
-  getData();
-  const jobs = [
-    {
-      company: "facebook",
-      title: "software engineer",
-      location: "amsterdam",
-      description: "this is a description",
-      requirements: "this is a requirement",
-      salary: "1000",
-      link: "https://www.facebook.com/careers/jobs/",
-      date: "03.04.2021",
-    },
-    {
-      company: "google",
-      title: "software engineer",
-      location: "amsterdam",
-      description: "this is a description1",
-      requirements: "this is a requirement1",
-      salary: "1000",
-      link: "https://www.facebook.com/careers/jobs/",
-      date: "04.05.2021",
-    },
-    {
-      company: "amazon",
-      title: "software engineer",
-      location: "amsterdam",
-      description: "this is a description2",
-      requirements: "this is a requirement2",
-      salary: "1000",
-      link: "https://www.facebook.com/careers/jobs/",
-      date: "04.05.2022",
-    },
-  ];
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getAllJobs();
+      setJobs(response);
+      console.log(response)
+    };
+    getData();
+  }, []);
 
   return (
     <div
@@ -83,25 +56,25 @@ const Jobs = () => {
       <div
         id="Jobs"
         style={{
-          height: "90%",
+          height: "80%",
           width: "80%",
           float: "left",
           marginLeft: "10%",
-          marginTop: "5%",
+          marginTop: "1%",
+          overflow: "scroll",
         }}
       >
         <CRow xs={{ cols: 1 }}>
-          {jobs.map((job) => (
+            {jobs.map((job, index) => (
             <Job
-              position={job.position}
-              company={job.company}
-              description={job.description}
-              date={job.date}
+              job={job} index={index}
             />
           ))}
         </CRow>
       </div>
-      <div id="button"></div>
+      <div style ={{marginTop: "37%", marginLeft: "75%"}} id="button">
+      <CButton color="secondary" href="/add-job">Add posting</CButton>
+      </div>
     </div>
   );
 };
