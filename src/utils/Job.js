@@ -1,39 +1,36 @@
 import {
-  CCard,
-  CCardBody,
-  CCardImage,
-  CRow,
-  CCol,
-  CCardTitle,
-  CCardText,
   CButton,
 } from "@coreui/react";
-import bg from "../img/bg.jpg";
+import placeholder from "../img/google_logo.png";
 
-const Job = ({job,index}) => {
+import CIcon from "@coreui/icons-react";
+import { cilArrowRight } from "@coreui/icons";
+
+const Job = ({ job, index }) => {
   return (
     <>
-      <CCard className="mb-3" style={{width: "50%", background: "#F6F6F6", marginLeft: "10%" }}>
-        <CRow className="g-0">
-          <CCol md={4}>
-            <CCardImage src={bg} />
-          </CCol>
-          <CCol md={8}>
-            <CCardBody>
-              <CCardTitle>{job.organization}</CCardTitle>
-              <CCardText>{job.job_position}</CCardText>
-              <CCardText>{job.description}</CCardText>
-              <CCardText>
-                <small className="text-medium-emphasis">Posted {job.posting_date}</small>
-              </CCardText>
-              <CButton color="secondary" href="/apply">Apply</CButton>
-            </CCardBody>
-          </CCol>
-        </CRow>
-      </CCard>
+      <div className="job-card w-full flex rounded overflow-hidden bg-primaryTailwind border border-slate-600">
+        <div className="job-details py-3 px-4 flex flex-col">
+          <div className="job-header mb-2 flex gap-3">
+            <div className="job-image">
+              <img src={placeholder} width="64" height="64" className="float-left"/>
+            </div>
+            <div className="job-title font-sans h-full flex flex-col">
+              <h1 className="text-xl"><b>{job.job_position}</b>  |  {job.organization}</h1>
+              <p className="job-posted-date text-sm text-gray-500 justify-self-end mb-2">Posted {job.posting_date}</p>
+            </div>
+          </div>
+          <div className="job-description flex-1">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
+          </div>
+          
+        </div>
+        <div className="job-apply w-1/5 flex justify-center items-center">
+          <CButton color="secondary" href="/apply"><CIcon color="primary" icon={cilArrowRight} size="xl" /></CButton>
+        </div>
+      </div>
     </>
   );
 };
-
 
 export default Job;

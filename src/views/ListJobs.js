@@ -12,7 +12,7 @@ const ListJobs = () => {
         <div
           style={{
             backgroundColor: "#9DDAF6",
-            height: "15vh",
+            height: "22vh",
             position: "absolute",
             width: "100vw",
             zIndex: "-1"
