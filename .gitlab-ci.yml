@@ -1,10 +1,13 @@
 stages:
   - build
+  - deploy
 
 variables:
   IMAGE_NAME: webapp
   TAG_LATEST: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME:latest
   TAG_COMMIT: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME:$CI_COMMIT_SHORT_SHA
+  ECS_CLUSTER: WebApp
+  ECS_SERVICE: webapp-service
   DOCKER_TLS_CERTDIR: ""
 
 docker:
@@ -24,3 +27,14 @@ docker:
     - docker build --cache-from $TAG_LATEST -t $TAG_COMMIT -t $TAG_LATEST .
     - docker push $TAG_COMMIT
     - docker push $TAG_LATEST
+
+deploy:
+    stage: deploy
+    image:
+      name: amazon/aws-cli
+      entrypoint: [ "" ]
+    only:
+        - main
+    script:
+        - aws ecs register-task-definition --cli-input-json s3://lambda-functions-blind-hiring/task_definition.json
+        - aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE --force-new-deployment
