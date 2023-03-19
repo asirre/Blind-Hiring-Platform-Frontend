@@ -1,43 +1,37 @@
 {
   "family": "WebApp",
-  "containerDefinitions": [
-    {
-      "name": "webapp",
-      "image": "331211748190.dkr.ecr.eu-west-1.amazonaws.com/webapp:latest",
-      "cpu": 0,
-      "portMappings": [
-        {
-          "containerPort": 80,
-          "hostPort": 80,
-          "protocol": "tcp"
-        }
-      ],
-      "essential": true,
-      "entryPoint": [],
-      "command": [],
-      "environment": [
-        {
-          "name": "REACT_APP_USER_POOL_ID",
-          "value": "eu-west-1_ly7Ew3uKn"
-        },
-        {
-          "name": "REACT_APP_POOL_CLIENT_ID",
-          "value": "48ocmmdsbd6ha1d8pbf27jgdei"
-        }
-      ],
-      "mountPoints": [],
-      "volumesFrom": [],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/WebApp",
-          "awslogs-region": "eu-west-1",
-          "awslogs-stream-prefix": "ecs"
-        }
+  "containerDefinitions": [{
+    "name": "webapp",
+    "image": "331211748190.dkr.ecr.eu-west-1.amazonaws.com/webapp:latest",
+    "cpu": 0,
+    "portMappings": [{
+      "name": "webapp-80-tcp",
+      "containerPort": 80,
+      "hostPort": 80,
+      "protocol": "tcp"
+    }],
+    "essential": true,
+    "environment": [{
+      "name": "REACT_APP_USER_POOL_ID",
+      "value": "eu-west-1_ly7Ew3uKn"
+    },
+      {
+        "name": "REACT_APP_POOL_CLIENT_ID",
+        "value": "48ocmmdsbd6ha1d8pbf27jgdei"
+      }
+    ],
+    "mountPoints": [],
+    "volumesFrom": [],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-create-group": "true",
+        "awslogs-group": "/ecs/WebApp",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
       }
     }
-  ],
+  }],
   "executionRoleArn": "arn:aws:iam::331211748190:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
   "requiresCompatibilities": [
