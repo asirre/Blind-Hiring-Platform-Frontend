@@ -7,6 +7,7 @@ variables:
   TAG_LATEST: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME:latest
   TAG_COMMIT: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME:$CI_COMMIT_SHORT_SHA
   ECS_CLUSTER: WebApp
+  ECS_SERVICE: webapp-service
   DOCKER_TLS_CERTDIR: ""
 
 docker:
@@ -35,5 +36,5 @@ deploy:
     only:
         - main
     script:
-        - aws ecs register-task-definition --family $ECS_SERVICE --container-definitions file://task_definition.json --execution-role-arn arn:aws:iam::331211748190:role/ecsTaskExecutionRole --network-mode awsvpc
+        - aws ecs register-task-definition --family $ECS_CLUSTER --container-definitions file://task_definition.json --execution-role-arn arn:aws:iam::331211748190:role/ecsTaskExecutionRole --network-mode awsvpc
         - aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE --force-new-deployment
