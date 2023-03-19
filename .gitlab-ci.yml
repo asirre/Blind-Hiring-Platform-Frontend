@@ -36,5 +36,5 @@ deploy:
     only:
         - main
     script:
-        - aws ecs register-task-definition --family $ECS_CLUSTER --container-definitions file://task_definition.json --execution-role-arn arn:aws:iam::331211748190:role/ecsTaskExecutionRole --network-mode awsvpc
+        - aws ecs register-task-definition --cli-input-json s3://lambda-functions-blind-hiring/task_definition.json
         - aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE --force-new-deployment
