@@ -1,79 +1,39 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:eu-west-1:331211748190:task-definition/WebApp:3",
-  "containerDefinitions": [
-    {
-      "name": "webapp",
-      "image": "331211748190.dkr.ecr.eu-west-1.amazonaws.com/webapp:latest",
-      "cpu": 0,
-      "portMappings": [
-        {
-          "name": "webapp-80-tcp",
-          "containerPort": 80,
-          "hostPort": 80,
-          "protocol": "tcp"
-        }
-      ],
-      "essential": true,
-      "environment": [
-        {
-          "name": "REACT_APP_USER_POOL_ID",
-          "value": "eu-west-1_ly7Ew3uKn"
-        },
-        {
-          "name": "REACT_APP_POOL_CLIENT_ID",
-          "value": "48ocmmdsbd6ha1d8pbf27jgdei"
-        }
-      ],
-      "mountPoints": [],
-      "volumesFrom": [],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/WebApp",
-          "awslogs-region": "eu-west-1",
-          "awslogs-stream-prefix": "ecs"
-        }
+  "family": "WebApp",
+  "containerDefinitions": [{
+    "name": "webapp",
+    "image": "331211748190.dkr.ecr.eu-west-1.amazonaws.com/webapp:latest",
+    "cpu": 0,
+    "portMappings": [{
+      "name": "webapp-80-tcp",
+      "containerPort": 80,
+      "hostPort": 80,
+      "protocol": "tcp"
+    }],
+    "essential": true,
+    "environment": [{
+      "name": "REACT_APP_USER_POOL_ID",
+      "value": "eu-west-1_ly7Ew3uKn"
+    },
+      {
+        "name": "REACT_APP_POOL_CLIENT_ID",
+        "value": "48ocmmdsbd6ha1d8pbf27jgdei"
+      }
+    ],
+    "mountPoints": [],
+    "volumesFrom": [],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-create-group": "true",
+        "awslogs-group": "/ecs/WebApp",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
       }
     }
-  ],
-  "family": "WebApp",
+  }],
   "executionRoleArn": "arn:aws:iam::331211748190:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "revision": 3,
-  "volumes": [],
-  "status": "ACTIVE",
-  "requiresAttributes": [
-    {
-      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-    },
-    {
-      "name": "ecs.capability.execution-role-awslogs"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-    },
-    {
-      "name": "ecs.capability.execution-role-ecr-pull"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-    },
-    {
-      "name": "ecs.capability.task-eni"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
-    }
-  ],
-  "placementConstraints": [],
-  "compatibilities": [
-    "EC2",
-    "FARGATE"
-  ],
   "requiresCompatibilities": [
     "FARGATE"
   ],
@@ -82,8 +42,5 @@
   "runtimePlatform": {
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
-  },
-  "registeredAt": "2023-03-19T17:20:00.521Z",
-  "registeredBy": "arn:aws:iam::331211748190:user/radu",
-  "tags": []
+  }
 }
