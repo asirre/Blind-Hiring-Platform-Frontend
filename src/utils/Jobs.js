@@ -62,6 +62,7 @@ const Jobs = () => {
           marginLeft: "10%",
           marginTop: "1%",
           overflow: "scroll",
+          overflowX: "hidden",
         }}
       >
         <CRow xs={{ cols: 1 }}>
