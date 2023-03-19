@@ -1,51 +1,78 @@
-import { CNavLink, CNav,  } from "@coreui/react";
-import CIcon from "@coreui/icons-react";
-import { cilUser } from '@coreui/icons';
+import {
+  CNavLink,
+  CNav,
+  CDropdown,
+  CDropdownItem,
+  CDropdownMenu,
+  CDropdownToggle,
+  CNavbarToggler,
+  CNavbar,
+  CContainer,
+  CNavbarBrand,
+  CDropdownDivider,
+  CCollapse,
+  CNavbarNav,
+  CNavItem,
+} from "@coreui/react";
+import { CIcon } from "@coreui/icons-react";
+import { cilUser } from "@coreui/icons";
+import Pool from '../views/UserPool';
 
 const Navbar = ({ isLoggedIn }) => {
 
-  if (false) {
+  const logout = () => {
+    const user = Pool.getCurrentUser();
+    if (user) {
+      user.signOut();
+    }
+  }
+
+  if (isLoggedIn) {
     return (
-      <CNav
-        className="justify-content-space-evenly"
-        component="nav"
-        variant="pills"
-        layout="fill"
-        style={{ height: "6vh", paddingTop: "0.5vh" }}
-      >
-        <CNavLink style={{ color: "grey" }} href="#">
-          Logo
-        </CNavLink>
-        <CNavLink style={{ color: "grey" }} href="listings">
-          Job Listings
-        </CNavLink>
-        <CNavLink style={{ color: "grey" }} href="matches">
-          My matches
-        </CNavLink>
-        <CNavLink style={{ color: "grey" }} href="account">
-        <CIcon icon={cilUser} style={{marginRight: "0.5vw"}} size="lg"/>
-          My account
-        </CNavLink>
-      </CNav>
+      <CNavbar className="bg-light" expand="lg" colorScheme="light" >
+        <CContainer>
+          <CNavbarBrand href="#">BHP</CNavbarBrand>
+          <CNavbarToggler aria-label="Toggle navigation" aria-expanded={true} />
+          <CCollapse className="navbar-collapse" visible={true}>
+            <CNavbarNav>
+              <CNavItem>
+                <CNavLink href="/jobs" active>
+                  Job Listings
+                </CNavLink>
+              </CNavItem>
+              <CNavItem>
+                <CNavLink href="#">Matches</CNavLink>
+              </CNavItem>
+              <CDropdown dark component="li" variant="nav-item">
+                <CDropdownToggle>My account</CDropdownToggle>
+                <CDropdownMenu>
+                  <CDropdownItem onClick={logout}>Log out</CDropdownItem>
+                  <CDropdownItem href="#">Settings</CDropdownItem>
+                </CDropdownMenu>
+              </CDropdown>
+            </CNavbarNav>
+          </CCollapse>
+        </CContainer>
+      </CNavbar>
     );
   }
   return (
-    <>
-      <CNav
-        component="nav"
-        variant="pills"
-        style={{ height: "6vh", paddingTop: "0.20vh" }}
-      >
-        <CNavLink style={{ color: "grey", marginLeft:"10vw" }} href="#">
-          Logo
-        </CNavLink>
-        <CNavLink style={{ marginLeft: "40%", color: "grey" }} href="login">
-          Log in
-        </CNavLink>
-        </CNav>
-    </>
+    <CNavbar className="bg-light" expand="lg" colorScheme="light" >
+    <CContainer>
+      <CNavbarBrand href="#">BHP</CNavbarBrand>
+      <CNavbarToggler aria-label="Toggle navigation" aria-expanded={true} />
+      <CCollapse className="navbar-collapse" visible={true}>
+        <CNavbarNav>
+          <CNavItem>
+          </CNavItem>
+          <CNavItem>
+            <CNavLink href="/login">Log in</CNavLink>
+          </CNavItem>
+        </CNavbarNav>
+      </CCollapse>
+    </CContainer>
+  </CNavbar>
   );
-
 };
 
 export default Navbar;

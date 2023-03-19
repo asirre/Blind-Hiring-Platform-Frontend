@@ -11,10 +11,10 @@ class App extends Component {
   render() {
     return (
       <Account>
-      <Status/>
-      <BrowserRouter>
-        <AppRouter />
-      </BrowserRouter>
+        <Status />
+        <BrowserRouter>
+          <AppRouter />
+        </BrowserRouter>
       </Account>
     );
   }

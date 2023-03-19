@@ -12,7 +12,7 @@ const Homepage = () => {
           style={{
             backgroundImage: `url(${bg})`,
             backgroundSize: "100% 100%",
-            height: "65vh",
+            height: "74vh",
           }}
         >
           <CCard className="text-center"

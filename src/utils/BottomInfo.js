@@ -12,7 +12,7 @@ import {
 
 const BottomInfo = () => {
   return (
-    <CCol style={{ backgroundColor: "#ECEEEE", height: "29vh" }}>
+    <CCol style={{ backgroundColor: "#ECEEEE", height: "20vh", float: "left", width: "100vw" }}>
       <CRow>
         <CCard
           style={{
