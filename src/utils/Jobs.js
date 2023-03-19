@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState, Spinner } from "react";
 import { useMutation } from "@tanstack/react-query";
 // import AsyncSelect from "react-select/async";
 import Job from "./Job";
-import { getAllJobs } from "../utils/get_all_jobs_example";
+import { getAllJobs, usersJob, getCVFeedback, createJobPosting } from "./LambdaRequests";
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -11,7 +11,15 @@ const Jobs = () => {
   useEffect(() => {
     const getData = async () => {
       const response = await getAllJobs();
-      setJobs(response);
+      setJobs(response)
+    };
+    getData();
+  }, []);
+
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await createJobPosting();
       console.log(response)
     };
     getData();
@@ -19,62 +27,32 @@ const Jobs = () => {
 
   return (
     <div
-      style={{
-        width: "80%",
-        height: "80%",
-        marginLeft: "10%",
-        marginTop: "7%",
-        float: "left",
-      }}
+      className="w-4/5 h-4/5 z-10 mx-auto mt-20 flex flex-col"
     >
       <div
         id="Title"
-        style={{
-          width: "90%",
-          background: "white",
-          border: "1px solid lightgray",
-          height: "3em",
-          display: "flex",
-          marginLeft: "5%",
-          borderRadius: "7px",
-        }}
+        className="h-16 w-11/12 mx-auto mb-10 bg-primaryTailwind border border-gray-400 flex items-center justify-center rounded"
       >
         <h1
-          style={{
-            textAlign: "center",
-            fontSize: "1.5em",
-            alignSelf: "center",
-            width: "100%",
-            margin: "0",
-            fontWeight: "400",
-            color: "grey",
-          }}
+          className="text-2xl m-0 font-light"
         >
           All listed Job Positions{" "}
         </h1>
       </div>
       <div
         id="Jobs"
-        style={{
-          height: "80%",
-          width: "80%",
-          float: "left",
-          marginLeft: "10%",
-          marginTop: "1%",
-          overflow: "scroll",
-          overflowX: "hidden",
-        }}
+        className="h-4/5 w-4/5 float-left mx-auto flex-grow overflow-y-scroll"
       >
-        <CRow xs={{ cols: 1 }}>
+        <ul className="w-full flex flex-col gap-4">
             {jobs.map((job, index) => (
             <Job
               job={job} index={index}
             />
           ))}
-        </CRow>
+        </ul>
       </div>
-      <div style ={{marginTop: "37%", marginLeft: "75%"}} id="button">
-      <CButton color="secondary" href="/add-job">Add posting</CButton>
+      <div className="flex w-4/5 mx-auto justify-end pt-4"  id="button">
+        <CButton href="/add-job">Add posting</CButton>
       </div>
     </div>
   );
