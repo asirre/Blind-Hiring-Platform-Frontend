@@ -1,5 +1,5 @@
 {
-  "family": "WebApp",
+  "taskDefinitionArn": "arn:aws:ecs:eu-west-1:331211748190:task-definition/WebApp:3",
   "containerDefinitions": [
     {
       "name": "webapp",
@@ -7,14 +7,13 @@
       "cpu": 0,
       "portMappings": [
         {
+          "name": "webapp-80-tcp",
           "containerPort": 80,
           "hostPort": 80,
           "protocol": "tcp"
         }
       ],
       "essential": true,
-      "entryPoint": [],
-      "command": [],
       "environment": [
         {
           "name": "REACT_APP_USER_POOL_ID",
@@ -38,8 +37,43 @@
       }
     }
   ],
+  "family": "WebApp",
   "executionRoleArn": "arn:aws:iam::331211748190:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
+  "revision": 3,
+  "volumes": [],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "ecs.capability.task-eni"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+    }
+  ],
+  "placementConstraints": [],
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
   "requiresCompatibilities": [
     "FARGATE"
   ],
@@ -48,5 +82,8 @@
   "runtimePlatform": {
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
-  }
+  },
+  "registeredAt": "2023-03-19T17:20:00.521Z",
+  "registeredBy": "arn:aws:iam::331211748190:user/radu",
+  "tags": []
 }
