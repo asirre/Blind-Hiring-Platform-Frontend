@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { CForm, CCol, CFormInput, CButton, CFormCheck, CFormFeedback } from "@coreui/react";
 import UserPool from './UserPool';
+import BottomInfo from "../utils/BottomInfo";
+import Navbar from "../utils/Navbar";
 
 const Signup = () => {
 
@@ -36,7 +38,7 @@ const Signup = () => {
 
   return(
     <div>
-
+        <Navbar isLoggedIn={false} />
         <CForm id="signUpForm"     
           noValidate
           validated={validated} 
@@ -89,6 +91,8 @@ const Signup = () => {
           </CCol>
 
         </CForm>
+    <BottomInfo />
+
     </div>
   );
 }

@@ -53,44 +53,25 @@ const CV = () => {
       <div style={{ width: "100%" }}>
         <CCol
           style={{
-            backgroundColor: "teal",
+            backgroundColor: "#9DDAF6",
             backgroundSize: "100% 100%"}}>
           <div>
             <CRow>
               <CCol sm={6}>
+
+                
                 <CCard className="text-left"
                   style={{
                     color: "white",
                     background: "transparent",
+                    marginLeft: "5vw",
                     border: "none",
-                    fontSize: "4vw",
+                    fontSize: "1.5vw",
                   }}
                 >
                   <CCardBody>
                     <CCardText >Upload your CV:</CCardText>
-                    <CButton
-                      style={{ color: "#2596be" }}
-                      color="light"
-                      onClick={uploadFile}
-                    >
-                      Upload
-                    </CButton>
-                  </CCardBody>
-                </CCard>
-
-              </CCol>
-              <CCol sm={6}>
-
-                <CCard
-                  style={{
-                    color: "white",
-                    background: "transparent",
-                    border: "none",
-                    fontSize: "4vw",
-                  }}
-                >
-                  <CCardBody>
-                    <CCardText>
+                    <div>
                       <input
                         id='uploadedFile'
                         type="file"
@@ -100,9 +81,26 @@ const CV = () => {
                         style={{display: 'none'}}
                       />
                       {selectFile?selectFile.name:""}
-                    </CCardText>
+                    </div>
+                    <br/>
+                    <CButton
+                      style={{ backgroundColor:"#3cb4d4", 
+                        color: "white", 
+                        width:"15vw", 
+                        height:"4vw" ,
+                        fontSize:"2vw"}}
+                      // color="light"
+                      onClick={uploadFile}
+                    >
+                      Select File
+                    </CButton>
                   </CCardBody>
                 </CCard>
+
+              </CCol>
+              <CCol sm={6}>
+
+                
               </CCol>
             </CRow>
           </div>
@@ -118,20 +116,23 @@ const CV = () => {
                 marginTop: "10vh",
                 marginLeft: "5vw",
                 marginRight: "5vw",
-                fontSize: "4vw",
+                fontSize: "1.5vw",
               }}
             >
               <CCardBody>
                 <CCardText >Overview:</CCardText>
 
-                <embed style={{ width: "100%" }} src={selectFileURL}/>
+                <iframe style={{ width: "100%", height:selectFile?"80vw":"0vw" }} src={selectFileURL}/>
 
                 <CButton
-                  style={{ color: "#2596be" }}
-                  color="light"
+                  style={{ backgroundColor:"#3cb4d4", 
+                    color: "white", 
+                    width:"15vw", 
+                    height:"4vw" ,
+                    fontSize:"2vw"}}
                   onClick={approveCV}
                 >
-                  Approve
+                  Upload
                 </CButton>
               </CCardBody>
             </CCard>
