@@ -20,7 +20,7 @@ const Login = () => {
     authenticate(email,password)
     .then(data => {
         console.log("Logged In!", data);
-        navigate('/login');
+        navigate('/jobs');
 
     })
     .catch(err => {

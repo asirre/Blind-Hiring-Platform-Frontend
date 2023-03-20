@@ -3,9 +3,9 @@ module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
     extend: {},
-    colors: {
-      primaryTailwind: "#EEEEEC",
-    }
+    // colors: {
+    //   primaryTailwind: "#EEEEEC",
+    // },
   },
   plugins: [],
 }
