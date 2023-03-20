@@ -105,9 +105,6 @@ const FeedbackView = () => {
               ))
             )}
           </div>
-          <div className="flex w-4/5 mx-auto justify-end pt-4" id="button">
-            <CButton href="/add-job">Add posting</CButton>
-          </div>
         </div>
       </CCol>
       <BottomInfo />
