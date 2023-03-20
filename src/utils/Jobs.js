@@ -1,5 +1,6 @@
 import { CCardGroup, CRow, CButton } from '@coreui/react'
 import React, { useEffect, useMemo, useState, Spinner } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 // import AsyncSelect from "react-select/async";
 import Job from './Job'
@@ -12,6 +13,11 @@ import {
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([])
+
+  const location = useLocation()
+  useEffect(() => {
+    console.log(location.pathname)
+  }, [location])
 
   useEffect(() => {
     const getData = async () => {

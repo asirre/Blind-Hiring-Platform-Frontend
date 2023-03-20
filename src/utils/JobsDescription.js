@@ -1,14 +1,19 @@
 import { CCardGroup, CRow, CButton } from '@coreui/react'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import placeholder from '../img/google_logo.png'
 // import AsyncSelect from "react-select/async";
 import { getAllJobs, createJobPosting } from './LambdaRequests'
 
 const JobDescription = () => {
   const routeParams = useParams()
+  const location = useLocation()
   const index = routeParams.id
   console.log(index)
+
+  useEffect(() => {
+    console.log(location.pathname)
+  }, [location])
 
   const [jobs, setJobs] = useState([])
   useEffect(() => {
@@ -24,13 +29,13 @@ const JobDescription = () => {
   useEffect(() => {
     const getData = async () => {
       const response = await createJobPosting()
-      console.log(job)
       console.log(response)
     }
     getData()
   }, [])
 
   const job = jobs[0]
+  console.log(jobs)
 
   return (
     <div className='w-4/5 h-4/5 z-10 mx-auto mt-20 flex flex-col'>
