@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { CForm, CCol, CFormInput, CButton, CCard } from "@coreui/react";
+import { CForm, CCol, CFormInput, CButton, CCard, CRow } from "@coreui/react";
 import { AccountContext } from '../Account';
 import BottomInfo from "../utils/BottomInfo";
 import Navbar from "../utils/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
@@ -10,6 +11,8 @@ const Login = () => {
   const [password, SetPassword] = useState("");
 
   const { authenticate } = useContext(AccountContext);
+  const navigate = useNavigate();
+
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -17,10 +20,12 @@ const Login = () => {
     authenticate(email,password)
     .then(data => {
         console.log("Logged In!", data);
+        navigate('/login');
 
     })
     .catch(err => {
         console.log("Error: ", err);
+        alert(err.message);
     })
   };
 
@@ -32,27 +37,30 @@ const Login = () => {
           style={{
             backgroundColor: `#9DDAF6`,
             backgroundSize: "100% 100%",
-            height: "65vh",
+            height: "65vh"
           }}
         >
+          <CRow className="justify-content-center">
         <CCard className="text-center"
             style={{
               color: "white",
-              position: "absolute",
-              width: "30vw",
+              position: "relative",
               background: "transparent",
               border: "none",
-              marginTop: "5vh",
-              marginLeft: "25vw",
-              marginRight: "25vw",
-              fontSize: "2vw",
+              width:"30vw",
+              fontSize: "2vw"
             }}
+            
           >
+          <CForm 
+          id="logInForm" 
+          onSubmit={onSubmit}
+          className="text-center"
+          style={{marginTop: "5vw"}}>
           <h1>Log In</h1>
-
-          <CForm id="logInForm" onSubmit={onSubmit}>
-          <CCol>
+          <CCol xs="auto">
               <CFormInput
+                className="text-center"
                 type="email"
                 value = {email}
                 label="Email"
@@ -61,8 +69,9 @@ const Login = () => {
               />
             </CCol>
 
-            <CCol>
+            <CCol xs="auto">
               <CFormInput
+                className="text-center"
                 type="password"
                 value = {password}
                 label="Password"
@@ -79,6 +88,7 @@ const Login = () => {
 
           </CForm>
         </CCard>
+        </CRow>
         </CCol>
 
     <BottomInfo />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CButton, CCol, CCard, CCardText, CCardBody, CRow } from "@coreui/react";
 import BottomInfo from "../utils/BottomInfo";
 import Navbar from "../utils/Navbar";
-import FormData from 'form-data';
+import { useNavigate } from "react-router-dom";
 import { uploadCV } from '../utils/upload_file_to_s3_example';
 
 const CV = () => {
@@ -11,6 +11,7 @@ const CV = () => {
   const [selectFile, setSelectFile] = useState();
   
   const hiddenFileInput = React.useRef(null);
+  const navigate = useNavigate();
   
   const uploadFile = () => {
     hiddenFileInput.current.click();
@@ -39,9 +40,13 @@ const CV = () => {
         data : fileOfBlob
       };
 
-      const response = await uploadCV(config);
-      await console.log(response);
-      //redirect
+      await uploadCV(config)
+        .then( function (response) {
+          console.log(response);
+          navigate('/homepage');
+        }
+
+      );      
     }
     
   };
