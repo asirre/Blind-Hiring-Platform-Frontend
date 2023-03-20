@@ -10,16 +10,6 @@ const JobDescription = () => {
   const index = routeParams.id
   console.log(index)
 
-  useEffect(() => {
-    console.log('Hi')
-    // const getData = async () => {
-    //   const response = await getAllJobs()
-    //   setJobs(response)
-    // }
-    // getData()
-    // console.log(jobs)
-  }, [])
-
   const [jobs, setJobs] = useState([])
   useEffect(() => {
     console.log('Hi')
@@ -41,7 +31,6 @@ const JobDescription = () => {
   }, [])
 
   const job = jobs[0]
-  console.log(job)
 
   return (
     <div className='w-4/5 h-4/5 z-10 mx-auto mt-20 flex flex-col'>

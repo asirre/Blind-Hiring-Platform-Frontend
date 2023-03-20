@@ -1,5 +1,4 @@
 import React from 'react'
-import JobsDescription from '../utils/JobsDescription'
 
 const SignUp = React.lazy(() => import('../views/Signup'))
 const LogIn = React.lazy(() => import('../views/Login'))
