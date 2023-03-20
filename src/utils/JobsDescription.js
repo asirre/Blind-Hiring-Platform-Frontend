@@ -24,7 +24,7 @@ const JobDescription = () => {
         id='Jobs'
         className='h-60 w-11/12 mx-auto mb-10 bg-primaryTailwind border border-gray-400 flex items-center justify-center rounded'
       >
-        <div class='p-4 flex-fill bd-highlight'>
+        <div className='job-header mb-2 flex gap-3'>
           <div className='job-image'>
             <img
               src={placeholder}
@@ -33,7 +33,7 @@ const JobDescription = () => {
               className='float-left'
             />
           </div>
-          <div className='job-title font-sans p-2 h-full flex flex-col'>
+          <div className='job-title font-sans h-full flex flex-col'>
             <h1 className='text-xl'>
               <b>Test</b>
             </h1>
@@ -41,14 +41,13 @@ const JobDescription = () => {
               Posted Date
             </p>
           </div>
-
-          <div className='job-description p-2 flex-grow-1 bd-highlight'>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            </p>
-          </div>
+        </div>
+        <div className='job-description flex-1'>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris
+          </p>
         </div>
       </div>
       <div className='flex w-4/5 mx-auto justify-end pt-4' id='button'>
