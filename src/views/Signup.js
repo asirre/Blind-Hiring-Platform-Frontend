@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { CForm, CCol, CFormInput, CButton, CFormCheck, CFormFeedback } from "@coreui/react";
+import { CForm, CCol, CFormInput, CButton, CFormCheck, CFormFeedback, CRow, CCard } from "@coreui/react";
 import UserPool from './UserPool';
+import BottomInfo from "../utils/BottomInfo";
+import Navbar from "../utils/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
 
@@ -8,9 +11,10 @@ const Signup = () => {
   const [password, SetPassword] = useState("");
   const [password2, SetPassword2] = useState("");
   const [validated, setValidated] = useState(false);
+  const navigate = useNavigate();
 
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault()
     const form = event.currentTarget
 
@@ -18,32 +22,58 @@ const Signup = () => {
 
     if (form.checkValidity() === true && password === password2) 
     {
-      UserPool.signUp(email, password, [], null, (err, data) => {
+      await UserPool.signUp(email, password, [], null, (err, data) => {
         
         if (err) {
           console.error(err);
-          //oops, there was a problem with given credentials (either user exists or passwords not good enough)
+          alert(err.message);
         }
         else
         {
           console.log(data);
-          //signup is done, redirect to homepage
+          navigate('/login');
         }
       });
+    }
+    else if (password !== password2)
+    {
+      alert("Passwords do not match!");
     }
   };
 
 
   return(
     <div>
-
+        <Navbar isLoggedIn={false} />
+        <CCol
+          style={{
+            backgroundColor: `#9DDAF6`,
+            backgroundSize: "100% 100%"
+          }}
+        >
+          <CRow className="justify-content-center">
+        <CCard className="text-center"
+            style={{
+              color: "white",
+              position: "relative",
+              background: "transparent",
+              border: "none",
+              width:"30vw",
+              fontSize: "2vw",
+              marginTop: "3vw",
+              marginBottom: "3vw"
+            }}
+            
+          >
         <CForm id="signUpForm"     
           noValidate
           validated={validated} 
-          onSubmit={onSubmit}>
-
-          <CCol md={4}>
+          onSubmit={onSubmit}
+          className="text-center">
+            <h1>Sign Up</h1>
+          <CCol>
             <CFormInput
+              className="text-center" 
               type="email"
               value = {email}
               label="Email"
@@ -52,8 +82,9 @@ const Signup = () => {
             />
           </CCol>
 
-          <CCol md={4}>
+          <CCol>
             <CFormInput
+              className="text-center"
               type="password"
               value = {password}
               label="Password"
@@ -62,8 +93,9 @@ const Signup = () => {
             />
           </CCol>
 
-          <CCol md={4}>
+          <CCol>
             <CFormInput
+              className="text-center"
               type="password"
               value = {password2}
               label="Confirm Password"
@@ -72,8 +104,10 @@ const Signup = () => {
             />
           </CCol>
 
-          <CCol xs={12}>
+          <CCol style={{fontSize:"1.5vw"}}>
             <CFormCheck
+              // style={{fontSize:"1vw"}}
+              className="text-center"
               type="checkbox"
               id="invalidCheck"
               label="I have read and I agree to the terms and conditions."
@@ -82,13 +116,19 @@ const Signup = () => {
             <CFormFeedback invalid>You must agree before submitting.</CFormFeedback>
           </CCol>
           
-          <CCol xs={12}>
-            <CButton color="primary" type="submit">
+          <CCol>
+            <CButton className="text-center" color="primary" type="submit">
               Sign up
             </CButton>
           </CCol>
 
         </CForm>
+
+        </CCard>
+        </CRow>
+        </CCol>
+    <BottomInfo />
+
     </div>
   );
 }
