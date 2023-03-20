@@ -17,6 +17,7 @@ const Jobs = () => {
       setJobs(response);
     };
     getData();
+    console.log(jobs)
   }, []);
 
   useEffect(() => {

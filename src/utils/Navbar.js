@@ -55,31 +55,6 @@ const Navbar = ({ isLoggedIn }) => {
           </div>
         </div>
       </div>
-      // <CNavbar className="bg-light" expand="lg" colorScheme="light" >
-      //   <CContainer>
-      //     {/* <CNavbarBrand href="/">BHP</CNavbarBrand> */}
-      //     <CNavbarToggler aria-label="Toggle navigation" aria-expanded={true} />
-      //     <CCollapse className="navbar-collapse" visible={true}>
-      //       <CNavbarNav>
-      //         <CNavItem>
-      //           <CNavLink href="/jobs" active>
-      //             Job Listings
-      //           </CNavLink>
-      //         </CNavItem>
-      //         <CNavItem>
-      //           <CNavLink href="#">Matches</CNavLink>
-      //         </CNavItem>
-      //         <CDropdown dark component="li" variant="nav-item" className="d-flex">
-      //           <CDropdownToggle>My account</CDropdownToggle>
-      //           <CDropdownMenu>
-      //             <CDropdownItem onClick={logout}>Log out</CDropdownItem>
-      //             <CDropdownItem href="#">Settings</CDropdownItem>
-      //           </CDropdownMenu>
-      //         </CDropdown>
-      //       </CNavbarNav>
-      //     </CCollapse>
-      //   </CContainer>
-      // </CNavbar>
     );
   }
   return (
