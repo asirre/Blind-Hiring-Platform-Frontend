@@ -10,16 +10,7 @@ import {
 } from './LambdaRequests'
 
 const JobDescription = () => {
-  const [jobs, setJobs] = useState([])
-
-  useEffect(() => {
-    const getData = async () => {
-      const response = await getAllJobs()
-      setJobs(response)
-    }
-    getData()
-    console.log(jobs)
-  }, [])
+  const index = props.match.params.index
 
   return (
     <div className='w-4/5 h-4/5 z-10 mx-auto mt-20 flex flex-col'>
@@ -44,10 +35,10 @@ const JobDescription = () => {
           </div>
           <div className='job-title font-sans p-2 h-full flex flex-col'>
             <h1 className='text-xl'>
-              <b>{jobs[0].job_position}</b> | {jobs[0].organization}
+              <b>Test</b>
             </h1>
             <p className='job-posted-date text-sm text-gray-500 justify-self-end mb-2'>
-              Posted {jobs[0].posting_date}
+              Posted Date
             </p>
           </div>
 

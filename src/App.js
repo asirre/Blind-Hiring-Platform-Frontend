@@ -1,11 +1,11 @@
-import "./App.css";
-import { Component } from "react";
-import { BrowserRouter } from "react-router-dom";
-import "@coreui/coreui/dist/css/coreui.min.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import AppRouter from "./views/AppRouter";
-import { Account } from "./Account";
-import Status from "./Status";
+import './App.css'
+import { Component } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import '@coreui/coreui/dist/css/coreui.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import AppRouter from './views/AppRouter'
+import { Account } from './Account'
+import Status from './Status'
 
 class App extends Component {
   render() {
@@ -16,8 +16,8 @@ class App extends Component {
           <AppRouter />
         </BrowserRouter>
       </Account>
-    );
+    )
   }
 }
 
-export default App;
+export default App
