@@ -74,7 +74,7 @@ const Account = (props) => {
   };
 
 
-  const logout = () => {
+  const signout = () => {
     const user = Pool.getCurrentUser();
     if (user) {
       user.signOut();
@@ -82,7 +82,7 @@ const Account = (props) => {
   }
 
   return (
-    <AccountContext.Provider value={{ authenticate, getSession, logout }}>
+    <AccountContext.Provider value={{ authenticate, getSession, signout }}>
       {props.children}
     </AccountContext.Provider>
   )

@@ -17,6 +17,8 @@ import {
 import { CIcon } from "@coreui/icons-react";
 import { cilUser } from "@coreui/icons";
 import Pool from '../views/UserPool';
+import { AccountContext } from "../Account";
+import { useContext } from "react";
 
 const NavbarLogo = ({}) => {
   return (
@@ -32,16 +34,18 @@ const NavbarButton = ({children, href}) => {
   )
 }
 
+const NavbarLogout = ({children, onClick}) => {
+  return (
+    <a className="navbar-button w-1/3 text-slate-900 hover:text-sky-400 text-md font-body m-0 text-center inline-block align-middle no-underline" onClick={onClick} href="/">
+      {children}
+    </a>
+  )
+}
 const Navbar = ({ isLoggedIn }) => {
 
-  const logout = () => {
-    const user = Pool.getCurrentUser();
-    if (user) {
-      user.signOut();
-    }
-  }
+const { signout } = useContext(AccountContext);
 
-  if (isLoggedIn) {
+  if (Pool.getCurrentUser()?true:false) {
     return (
       <div className="custom-navbar bg-slate-100 w-full p-0 h-12">
         <div className="navbar-content w-4/5 h-full mx-auto grid grid-cols-6">
@@ -51,7 +55,7 @@ const Navbar = ({ isLoggedIn }) => {
           <div className="navbar-buttons col-span-3 col-start-4 h-full flex items-center justify-end">
           <NavbarButton href="/jobs">Job Listings</NavbarButton>
           <NavbarButton href="/feedback">CV Feedback</NavbarButton>
-          <NavbarButton href="#">Sign out</NavbarButton>
+          <NavbarLogout onClick={signout}>Sign out</NavbarLogout>
           </div>
         </div>
       </div>
