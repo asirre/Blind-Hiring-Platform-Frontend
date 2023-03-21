@@ -1,4 +1,4 @@
-import { CCol, CRow } from "@coreui/react";
+import { CCol } from "@coreui/react";
 import BottomInfo from "../utils/BottomInfo";
 import Navbar from "../utils/Navbar";
 import Jobs from "../utils/Jobs";
