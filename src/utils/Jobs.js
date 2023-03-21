@@ -40,7 +40,7 @@ const Jobs = () => {
         </ul>
       </div>
       <div className="flex w-4/5 mx-auto justify-end pt-4" id="button">
-        <CButton href="/jobUpload">Add posting</CButton>
+        <CButton href="/job-upload">Add posting</CButton>
       </div>
     </div>
   )
