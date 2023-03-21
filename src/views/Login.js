@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
-import { CForm, CCol, CFormInput, CButton, CCard, CRow } from "@coreui/react";
+import React, { useState, useContext, startTransition } from 'react';
+import { CForm, CCol, CFormInput, CButton, CCard, CRow, CFormLabel } from "@coreui/react";
 import { AccountContext } from '../Account';
 import BottomInfo from "../utils/BottomInfo";
 import Navbar from "../utils/Navbar";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
 
@@ -20,7 +20,7 @@ const Login = () => {
     authenticate(email,password)
     .then(data => {
         console.log("Logged In!", data);
-        navigate('/login');
+        navigate('/jobs');
 
     })
     .catch(err => {
@@ -32,7 +32,7 @@ const Login = () => {
 
   return(
     <div>
-      <Navbar isLoggedIn={false} />
+      <Navbar/>
       <CCol
           style={{
             backgroundColor: `#9DDAF6`,
@@ -81,9 +81,21 @@ const Login = () => {
             </CCol>
             
             <CCol xs={12}>
-              <CButton color="primary" type="submit">
-                Log in
-              </CButton>
+              <CRow>
+                <CCol>
+                  <CButton color="primary" type="submit">
+                    Log in
+                  </CButton>
+                </CCol>
+                <CCol>
+                  <CFormLabel style={{fontSize:"1.2vw"}}>
+                    <span>No account? </span>
+                    <label onClick={() => {startTransition(() => {navigate("/signup")})}}
+                      style={{color:"blue",textDecorationLine:'underline'}}> Sign up </label>
+                    <span> !</span>
+                  </CFormLabel>
+                </CCol>               
+              </CRow>
             </CCol>
 
           </CForm>
