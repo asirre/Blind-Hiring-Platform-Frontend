@@ -45,11 +45,11 @@ const Jobs = () => {
         id='Jobs'
         className='h-4/5 w-4/5 float-left mx-auto flex-grow overflow-y-scroll'
       >
-        <ul className='w-full flex flex-col gap-4'>
+        <ul className='w-full flex flex-col gap-4 items-center'>
           {isLoading ? (
-            <CSpinner style={{ marginTop: '15%', marginLeft: '45%' }} />
+            <CSpinner style={{ marginTop: '15%'}} />
           ) : (
-            jobs.map((job, index) => <Job job={job} index={index} />)
+            jobs.length ? jobs.map((job, index) => <Job job={job} index={index} />) : (<h1 className="text-2xl mt-20 font-light">No jobs available.</h1>)
           )}
         </ul>
       </div>

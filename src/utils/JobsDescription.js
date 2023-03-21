@@ -57,6 +57,7 @@ const JobDescription = ({ job }) => {
         navigate("/jobs", { state: { job: job } });
       });
     });
+
   };
 
   return (
