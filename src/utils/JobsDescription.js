@@ -1,12 +1,15 @@
 import { CButton } from "@coreui/react";
-import React from "react";
+import React, {startTransition} from "react";
 import placeholder from "../img/google_logo.png";
 import { callLambda } from "./LambdaRequests";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const JobDescription = ({ job }) => {
   const jwtToken = localStorage.getItem("token");
   const email = localStorage.getItem("email");
+
+  let navigate = useNavigate();
 
   const getCVs = async () => {
     const config = {
@@ -48,6 +51,10 @@ const JobDescription = ({ job }) => {
         data: {
           candidates: candidates,
         },
+      }).then((response) => {
+        console.log(response);
+        alert("You have successfully applied for this job!");
+        navigate("/jobs", { state: { job: job } });
       });
     });
 
