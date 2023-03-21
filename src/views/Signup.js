@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { startTransition, useState } from 'react';
 import { CForm, CCol, CFormInput, CButton, CFormCheck, CFormFeedback, CRow, CCard } from "@coreui/react";
 import UserPool from './UserPool';
 import BottomInfo from "../utils/BottomInfo";
@@ -17,6 +17,10 @@ const Signup = () => {
   const onSubmit = async (event) => {
     event.preventDefault()
     const form = event.currentTarget
+
+  const handleTerms = (e) => {
+    
+  };
 
     setValidated(true);
 
@@ -44,7 +48,7 @@ const Signup = () => {
 
   return(
     <div>
-        <Navbar isLoggedIn={false} />
+        <Navbar/>
         <CCol
           style={{
             backgroundColor: `#9DDAF6`,
@@ -110,7 +114,14 @@ const Signup = () => {
               className="text-center"
               type="checkbox"
               id="invalidCheck"
-              label="I have read and I agree to the terms and conditions."
+              // label="I have read and I agree to the terms and conditions."
+              label={
+                <div>
+                   <span>I accept the </span>
+                   <label onClick={() => {startTransition(() => {navigate("/terms-and-conditions")})}}
+                    style={{color:"blue",textDecorationLine:'underline'}}>terms of use</label>.
+                </div>
+                }
               required
             />
             <CFormFeedback invalid>You must agree before submitting.</CFormFeedback>
