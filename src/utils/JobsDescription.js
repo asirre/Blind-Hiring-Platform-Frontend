@@ -108,7 +108,7 @@ const JobDescription = ({ job }) => {
         </div>
       </div>
       <div className="flex w-4/5 mx-auto justify-end pt-4" id="button">
-        <CButton>Apply</CButton>
+        <CButton onClick={sendJobUpdate}>Apply</CButton>
       </div>
     </div>
   );
