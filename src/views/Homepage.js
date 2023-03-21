@@ -6,7 +6,7 @@ import Navbar from "../utils/Navbar"
 const Homepage = () => {
   return (
     <>
-      <Navbar isLoggedIn={false} />
+      <Navbar/>
       <div style={{ height: "10vh", width: "100vw" }}>
         <CCol
           style={{

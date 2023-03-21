@@ -187,7 +187,7 @@ const JobUpload = () => {
 
   return (
     <>
-      <Navbar isLoggedIn={jwtToken?true:false}/>
+      <Navbar/>
 
     <div
       className="w-4/5 h-4/5 z-10 mx-auto mt-20 flex flex-col"
@@ -215,8 +215,8 @@ const JobUpload = () => {
 
         <CRow>
           <CCol xs="auto">
-            <img src={image?imageURL:""} style={image?{ width:"20vw", height:"15vw", visibility:'true'}: {width:"0vw", height:"0vw", visibility:'none'}} onClick={uploadImage}/>
-            <CButton style={image?{width:"0vw", height:"0vw", visibility:'hidden'} :{ width:"20vw", height:"15vw", visibility:'true'}}
+            <img src={image?imageURL:""} style={image?{ width:"20vw", height:"15vw", visibility:"visible"}: {width:"0vw", height:"0vw", visibility:'none'}} onClick={uploadImage}/>
+            <CButton style={image?{width:"0vw", height:"0vw", visibility:'hidden'} :{ width:"20vw", height:"15vw", visibility:'visible'}}
               onClick={uploadImage}>Upload image</CButton>
           </CCol>
 
