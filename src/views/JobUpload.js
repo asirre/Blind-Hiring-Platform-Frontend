@@ -23,6 +23,7 @@ const JobUpload = () => {
   const [contract, setContract] = useState();
   const [employment, setEmployment] = useState("full-time");
   const [description, setDescription] = useState();
+  const [logo, setLogo] = useState();
   
   const hiddenImageInput = React.useRef(null);
   const navigate = useNavigate();
@@ -39,20 +40,22 @@ const JobUpload = () => {
     return `${date}${separator}${month<10?`0${month}`:`${month}`}${separator}${year}`
   }
 
-  const data = 
-    `{"job_posting_id": "${Date.now().toString()}",
-    "organization": "${organization?organization:" "}",
-    "job_location": "${location?location:" "}",
-    "valid_until": "${until?until:getCurrentDate()}", 
-    "contract_type": "${contract?contract:" "}",
-    "emplyment_type": "${employment?employment:" "}",
-    "minimum_salary": ${minSalary?minSalary:0},
-    "maximum_salary": ${maxSalary?maxSalary:0},
-    "remote_policy": "${remote?remote:" "}",
-    "currency": "${currency?currency:" "}",
-    "posting_date": "${getCurrentDate()}",
-    "job_position": "${position?position:" "}",
-    "description": "${description?description:" "}"}`;
+  const timestamp = Date.now().toString();
+  // const data =
+  //   `{"job_posting_id": "${timestamp}",
+  //   "organization": "${organization?organization:" "}",
+  //   "job_location": "${location?location:" "}",
+  //   "valid_until": "${until?until:getCurrentDate()}",
+  //   "contract_type": "${contract?contract:" "}",
+  //   "emplyment_type": "${employment?employment:" "}",
+  //   "minimum_salary": ${minSalary?minSalary:0},
+  //   "maximum_salary": ${maxSalary?maxSalary:0},
+  //   "remote_policy": "${remote?remote:" "}",
+  //   "currency": "${currency?currency:" "}",
+  //   "posting_date": "${getCurrentDate()}",
+  //   "job_position": "${position?position:" "}",
+  //   "description": "${description?description:" "}",
+  //   "logo": "${logo?logo:" "}"}`;
   
   const uploadImage = () => {
     hiddenImageInput.current.click();
@@ -122,6 +125,22 @@ const JobUpload = () => {
       var blob = new Blob([image], {type : image.type});
       var fileOfBlob = new File([blob], image.name);
 
+      const logoURL = await uploadLogo(timestamp, fileOfBlob);
+
+      const data = `{"job_posting_id": "${timestamp}",
+      "organization": "${organization?organization:" "}",
+      "job_location": "${location?location:" "}",
+      "valid_until": "${until?until:getCurrentDate()}", 
+      "contract_type": "${contract?contract:" "}",
+      "emplyment_type": "${employment?employment:" "}",
+      "minimum_salary": ${minSalary?minSalary:0},
+      "maximum_salary": ${maxSalary?maxSalary:0},
+      "remote_policy": "${remote?remote:" "}",
+      "currency": "${currency?currency:" "}",
+      "posting_date": "${getCurrentDate()}",
+      "job_position": "${position?position:" "}",
+      "description": "${description?description:" "}",
+      "logo": "${logoURL?logoURL:" "}"}`;
 
       var config = {
         method: "POST",
@@ -143,8 +162,27 @@ const JobUpload = () => {
           alert("Oops, something went wrong! Please try again.")
         });
     }
-    
   };
+
+  const uploadLogo = async (jobId, image) => {
+    var config = {
+      method: "POST",
+      url: "https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/job-posting/" + jobId + "/image",
+      headers: {
+        "Authorization":  jwtToken,
+        "Content-Type": "image/png"
+      },
+      data: image
+    }
+
+    const response = await axios(config)
+        .catch(function (error) {
+          console.log(error);
+          alert("Oops, something went wrong! Please try again.")
+        });
+
+    return response.data;
+  }
 
 
   return (

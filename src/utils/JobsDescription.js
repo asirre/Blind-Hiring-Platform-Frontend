@@ -3,7 +3,6 @@ import React from "react";
 import placeholder from "../img/google_logo.png";
 
 const JobDescription = ({ job }) => {
-  console.log(job);
   return (
     <div className="w-4/5 h-4/5 z-10 mx-auto mt-20 flex flex-col">
       <div
@@ -15,6 +14,14 @@ const JobDescription = ({ job }) => {
       <div className="job-card w-3/4 mx-auto flex rounded overflow-hidden bg-slate-100 border border-slate-600">
         <div className="job-details py-3 px-4 flex flex-col">
           <div className="job-header mb-2 flex gap-3">
+          <div className="job-image">
+              <img
+                src={job.logo || placeholder}
+                width="64"
+                height="64"
+                className="float-left"
+              />
+            </div>
             <div className="job-title font-sans h-full flex flex-col">
               <h1 className="text-xl">
                 <b>{job.job_position}</b> | {job.organization}

@@ -21,7 +21,7 @@ const Job = ({ job, index }) => {
           <div className="job-header mb-2 flex gap-3">
             <div className="job-image">
               <img
-                src={placeholder}
+                src={job.logo || placeholder}
                 width="64"
                 height="64"
                 className="float-left"
