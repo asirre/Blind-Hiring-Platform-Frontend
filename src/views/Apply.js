@@ -2,8 +2,11 @@ import { CCol } from '@coreui/react'
 import BottomInfo from '../utils/BottomInfo'
 import Navbar from '../utils/Navbar'
 import JobsDescription from '../utils/JobsDescription'
+import { useLocation } from 'react-router-dom'
+import React from 'react';
 
 const Apply = () => {
+  const { state } = useLocation();
   return (
     <>
       <div style={{ height: '100vh', width: '100vw' }}>
@@ -18,13 +21,7 @@ const Apply = () => {
               zIndex: '-1',
             }}
           ></div>
-          <JobsDescription />
-          {/* <div
-          style={{
-            backgroundColor: "white",
-            height: "50vh",
-          }}
-        ></div> */}
+          <JobsDescription job={state.job} />
         </CCol>
         <BottomInfo />
       </div>

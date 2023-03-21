@@ -1,38 +1,18 @@
-import { CCardGroup, CRow, CButton } from '@coreui/react'
-import React, { useEffect, useMemo, useState, Spinner } from 'react'
-import { useLocation } from 'react-router-dom'
-import { useMutation } from '@tanstack/react-query'
-// import AsyncSelect from "react-select/async";
+import { CButton } from '@coreui/react'
+import React, { useEffect, useState} from 'react'
 import Job from './Job'
 import {
   getAllJobs,
-  usersJob,
-  getCVFeedback,
-  createJobPosting,
 } from './LambdaRequests'
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([])
 
-  const location = useLocation()
-  useEffect(() => {
-    console.log(location.pathname)
-  }, [location])
 
   useEffect(() => {
     const getData = async () => {
       const response = await getAllJobs()
       setJobs(response)
-      console.log(response)
-    }
-    getData()
-    console.log(jobs)
-  }, [])
-
-  useEffect(() => {
-    const getData = async () => {
-      const response = await createJobPosting()
-      console.log(response)
     }
     getData()
   }, [])
