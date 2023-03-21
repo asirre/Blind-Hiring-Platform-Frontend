@@ -1,9 +1,57 @@
 import { CButton } from "@coreui/react";
 import React from "react";
 import placeholder from "../img/google_logo.png";
+import { callLambda } from "./LambdaRequests";
+import axios from "axios";
 
 const JobDescription = ({ job }) => {
-  console.log(job);
+  const jwtToken = localStorage.getItem("token");
+  const email = localStorage.getItem("email");
+
+  const getCVs = async () => {
+    const config = {
+      method: "get",
+      url:
+        "https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/user-metadata/" +
+        email,
+      headers: {
+        Authorization: jwtToken,
+      },
+    };
+    console.log(config);
+    const response = await axios(config).catch(function (error) {
+      console.log(error);
+      alert("Oops, something went wrong! Please try again.");
+    });
+    console.log(response.data);
+    return response.data;
+  };
+
+  const sendJobUpdate = async () => {
+    await getCVs().then((cvs) => {
+      console.log(cvs);
+      // Dynamically create the data object
+      let candidates = cvs.cv.map((cvPath) => {
+        return {
+          user_id: email,
+          attached_cv:
+            "https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/cv-upload/" +
+            cvPath,
+        };
+      });
+      callLambda({
+        token: localStorage.getItem("token"),
+        method: "patch",
+        url:
+          "https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/job-posting/" +
+          job.job_posting_id,
+        data: {
+          candidates: candidates,
+        },
+      });
+    });
+  };
+
   return (
     <div className="w-4/5 h-4/5 z-10 mx-auto mt-20 flex flex-col">
       <div
@@ -23,7 +71,6 @@ const JobDescription = ({ job }) => {
                 className="float-left"
               />
             </div>
-
             <div className="job-title font-sans h-full flex flex-col">
               <h1 className="text-xl">
                 <b>{job.job_position}</b> | {job.organization}
