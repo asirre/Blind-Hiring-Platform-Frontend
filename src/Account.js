@@ -59,6 +59,8 @@ const Account = (props) => {
     user.authenticateUser(authdetails, {
         onSuccess: (data) => {
             console.log("Success: ", data);
+            localStorage.setItem("token", data.accessToken.jwtToken);
+            localStorage.setItem("email", data.idToken.payload.email);
             resolve(data);
         },
         onFailure: (err) => {

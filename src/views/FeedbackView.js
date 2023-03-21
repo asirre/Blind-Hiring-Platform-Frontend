@@ -12,6 +12,7 @@ const FeedbackView = () => {
   const [feedback, setFeedback] = useState([]);
   const [usersCVS, setUsersCVS] = useState([]);
   const [email, setEmail] = useState();
+  const [noCVS, setNoCVS] = useState(false);
 
   const { getSession } = useContext(AccountContext);
 
@@ -27,6 +28,9 @@ const FeedbackView = () => {
         .then((response) => {
           feedbackSet.add(response);
           setFeedback([...feedbackSet]);
+          if (feedbackSet.size === 0) {
+            setNoCVS(true);
+          }
         })
         .then(() => {
           setLoading(false);
@@ -78,10 +82,12 @@ const FeedbackView = () => {
           >
             {isLoading ? (
               <CSpinner />
-            ) : (
+            ) : ( !noCVS ? (
               feedback.map((cv_feedback, index) => (
                 <Feedback cv_feedback={cv_feedback} index={index} />
-              ))
+              ))) :(
+                <h1 className="text-2xl m-0 font-light">No feedback available. Upload CV first.</h1>
+              )
             )}
           </div>
         </div>
