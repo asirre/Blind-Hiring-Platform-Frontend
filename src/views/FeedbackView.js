@@ -89,7 +89,7 @@ const FeedbackView = () => {
         <div className="w-4/5 h-4/5 z-10 mx-auto mt-20 flex flex-col">
           <div
             id="Title"
-            className="h-16 w-11/12 mx-auto mb-10 bg-primaryTailwind border border-gray-400 flex items-center justify-center rounded"
+            className="h-16 w-11/12 mx-auto mb-10 bg-slate-100 border border-gray-400 flex items-center justify-center rounded"
           >
             <h1 className="text-2xl m-0 font-light">CV Feedback </h1>
           </div>

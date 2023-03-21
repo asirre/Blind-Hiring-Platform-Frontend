@@ -26,7 +26,7 @@ const Job = ({ job, index }) => {
           
         </div>
         <div className="job-apply w-1/5 flex justify-center items-center">
-          <CButton color="secondary" href="/apply"><CIcon color="primary" icon={cilArrowRight} size="xl" /></CButton>
+          <CButton color="secondary" href="/cv"><CIcon color="primary" icon={cilArrowRight} size="xl" /></CButton>
         </div>
       </div>
     </>

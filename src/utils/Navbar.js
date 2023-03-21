@@ -50,7 +50,7 @@ const Navbar = ({ isLoggedIn }) => {
           </div>
           <div className="navbar-buttons col-span-3 col-start-4 h-full flex items-center justify-end">
           <NavbarButton href="/jobs">Job Listings</NavbarButton>
-          <NavbarButton href="#">Matches</NavbarButton>
+          <NavbarButton href="/feedback">CV Feedback</NavbarButton>
           <NavbarButton href="#">Sign out</NavbarButton>
           </div>
         </div>
