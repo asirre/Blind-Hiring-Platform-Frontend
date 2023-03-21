@@ -9,6 +9,7 @@ const JobUpload = React.lazy(() => import("../views/JobUpload"));
 const TermsAndConditions = React.lazy(() => import("../views/TermsAndConditions"));
 const FeedbackView = React.lazy(() => import("../views/FeedbackView"));
 const Apply = React.lazy(() => import("../views/Apply"));
+const RouteGuard = React.lazy(() => import("../views/RouteGuard"));
 
 const routes = [
   { path: "/signup", name: "Sign up", element: SignUp, protected: false },
@@ -18,13 +19,15 @@ const routes = [
   { path: "/cv", name: "CV", element: CV, protected: false},
   { path: "/job-upload", name: "JobUpload", element: JobUpload, protected: false},
   { path: "/terms-and-conditions", name: "TermsAndConditions", element: TermsAndConditions, protected: false},
-  { path: "feedback", name: "Feedback", element: FeedbackView, protected: true},
+  { path: "/feedback", name: "Feedback", element: FeedbackView, protected: true},
   {
     path: "/apply/:id",
     name: "Apply",
     element: Apply,
     protected: false,
   },
+  { path: "/*", name: "RouteGuard", element: RouteGuard, protected: false},
+
 ];
 
 export default routes;

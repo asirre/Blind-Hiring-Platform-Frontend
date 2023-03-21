@@ -5,7 +5,7 @@ import Navbar from "../utils/Navbar";
 import { useNavigate } from "react-router-dom";
 import { AccountContext } from '../Account';
 import axios from 'axios';
-import { callLambda } from "../utils/LambdaRequests";
+import RouteGuard from './RouteGuard';
 
 const CV = () => {
 
@@ -83,6 +83,11 @@ const CV = () => {
   };
 
 
+  if (localStorage.getItem("token") == undefined)
+  return (<div>
+    <RouteGuard/>
+  </div>)
+  else
   return (
     <>
       <Navbar/>

@@ -5,6 +5,7 @@ import Navbar from "../utils/Navbar";
 import { useNavigate } from "react-router-dom";
 import { AccountContext } from '../Account';
 import axios from 'axios';
+import RouteGuard from './RouteGuard';
 
 const JobUpload = () => {
 
@@ -180,6 +181,11 @@ const JobUpload = () => {
   }
 
 
+  if (localStorage.getItem("token") == undefined)
+    return (<div>
+      <RouteGuard/>
+    </div>)
+  else
   return (
     <>
       <Navbar/>

@@ -5,6 +5,7 @@ import Navbar from "../utils/Navbar";
 import Feedback from "../utils/Feedback";
 import { callLambda } from "../utils/LambdaRequests";
 import { AccountContext } from "../Account";
+import RouteGuard from './RouteGuard';
 
 
 const FeedbackView = () => {
@@ -52,6 +53,12 @@ const FeedbackView = () => {
       .catch((err) => console.log(err));
   }, []);
 
+
+  if (localStorage.getItem("token") == undefined)
+  return (<div>
+    <RouteGuard/>
+  </div>)
+  else
   return (
     <div style={{ height: "100vh", width: "100vw" }}>
       <Navbar/>
