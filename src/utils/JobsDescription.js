@@ -1,13 +1,10 @@
 import {CButton} from '@coreui/react'
-import React, {useContext, useEffect, useState} from 'react'
+import React from 'react'
 import placeholder from '../img/google_logo.png'
-import {AccountContext} from '../Account'
-import {updateJobPostings} from './LambdaRequests'
+import {callLambda} from './LambdaRequests'
 import axios from 'axios'
 
 const JobDescription = ({job}) => {
-    const {getSession} = useContext(AccountContext)
-
     const jwtToken = localStorage.getItem('token');
     const email = localStorage.getItem('email');
 
@@ -39,12 +36,14 @@ const JobDescription = ({job}) => {
                     "attached_cv": 'https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/cv-upload/' + cvPath
                 };
             });
-            console.log(job);
-            let data = {
-                "job_posting_id": job.job_posting_id,
-                "candidates": candidates
-            };
-            updateJobPostings(data)
+            callLambda({
+                token: localStorage.getItem("token"),
+                method: 'patch',
+                url: 'https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/job-posting/' + job.job_posting_id,
+                data: {
+                    "candidates": candidates
+                }
+            });
         });
     }
 
