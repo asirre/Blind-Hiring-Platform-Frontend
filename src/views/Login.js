@@ -37,7 +37,8 @@ const Login = () => {
           style={{
             backgroundColor: `#9DDAF6`,
             backgroundSize: "100% 100%",
-            height: "65vh"
+            height: "73.5vh",
+            width: "100%"
           }}
         >
           <CRow className="justify-content-center">
