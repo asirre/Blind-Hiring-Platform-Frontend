@@ -39,7 +39,7 @@ const FeedbackView = () => {
 
   const getCVS = async (email) => {
     const response = await callLambda({token: token, url:`https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/user-metadata/${email}`});
-    return response.cv;
+    return response?.cv;
   };
 
   useEffect(() => {
@@ -48,7 +48,13 @@ const FeedbackView = () => {
         return getCVS(session.idToken.payload.email);
       })
       .then((data) => {
+        if(data) {
         callFeedback(data);
+        }
+        else {
+          setNoCVS(true);
+          setLoading(false);
+        }
       })
       .catch((err) => console.log(err));
   }, []);

@@ -50,6 +50,7 @@ const JobDescription = ({ job }) => {
         },
       });
     });
+
   };
 
   return (
