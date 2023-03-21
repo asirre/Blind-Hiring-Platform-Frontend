@@ -3,7 +3,7 @@ import { CForm, CCol, CFormInput, CButton, CCard, CRow, CFormLabel } from "@core
 import { AccountContext } from '../Account';
 import BottomInfo from "../utils/BottomInfo";
 import Navbar from "../utils/Navbar";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 

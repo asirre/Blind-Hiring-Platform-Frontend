@@ -2,7 +2,7 @@ import { CButton, CSpinner } from '@coreui/react'
 import React, { useEffect, useState} from 'react'
 import Job from './Job'
 import {
-  getAllJobs,
+  callLambda,
 } from './LambdaRequests'
 
 const Jobs = () => {
@@ -12,7 +12,7 @@ const Jobs = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await getAllJobs()
+      const response = await callLambda({token: localStorage.getItem("token"), url: "https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/job-posting"})
       setJobs(response)
       setLoading(false)
     }

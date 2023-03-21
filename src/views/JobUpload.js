@@ -24,7 +24,6 @@ const JobUpload = () => {
   const [contract, setContract] = useState();
   const [employment, setEmployment] = useState("full-time");
   const [description, setDescription] = useState();
-  const [logo, setLogo] = useState();
   
   const hiddenImageInput = React.useRef(null);
   const navigate = useNavigate();
@@ -77,10 +76,6 @@ const JobUpload = () => {
 
   function changePosition(event) {
     setPosition(event.target.value);
-  }
-
-  function changeUntil(event) {
-    setUntil(event.target.value);
   }
 
   function changeMin(event) {

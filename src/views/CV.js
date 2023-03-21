@@ -17,6 +17,7 @@ const CV = () => {
   const hiddenFileInput = React.useRef(null);
   const navigate = useNavigate();
 
+
   const { getSession } = useContext(AccountContext);
   
   const uploadFile = () => {
@@ -39,11 +40,12 @@ const CV = () => {
 
   const approveCV = async event => {
 
-    if (selectFile != undefined) {
+    if (selectFile !== undefined) {
 
       var blob = new Blob([selectFile], {type : 'application/pdf'});
       var fileOfBlob = new File([blob], selectFile.name);
 
+      
 
       var config = {
         method: 'POST',

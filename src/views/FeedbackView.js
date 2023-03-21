@@ -3,7 +3,7 @@ import { CCol, CSpinner } from "@coreui/react";
 import BottomInfo from "../utils/BottomInfo";
 import Navbar from "../utils/Navbar";
 import Feedback from "../utils/Feedback";
-import { getUsersCVS, getCVFeedback } from "../utils/LambdaRequests";
+import { callLambda } from "../utils/LambdaRequests";
 import { AccountContext } from "../Account";
 import RouteGuard from './RouteGuard';
 
@@ -11,14 +11,12 @@ import RouteGuard from './RouteGuard';
 const FeedbackView = () => {
   const [isLoading, setLoading] = useState(true);
   const [feedback, setFeedback] = useState([]);
-  const [usersCVS, setUsersCVS] = useState([]);
-  const [email, setEmail] = useState();
   const [noCVS, setNoCVS] = useState(false);
-
+  const token = localStorage.getItem("token");
   const { getSession } = useContext(AccountContext);
 
   const getFeedback = async (cv) => {
-    const response = await getCVFeedback(cv);
+    const response = await callLambda({token: token,url: `https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/cv-feedback/${cv}`});
     return response;
   };
 
@@ -40,15 +38,13 @@ const FeedbackView = () => {
   };
 
   const getCVS = async (email) => {
-    const response = await getUsersCVS(email);
-    setUsersCVS(response.cv);
+    const response = await callLambda({token: token, url:`https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/user-metadata/${email}`});
     return response.cv;
   };
 
   useEffect(() => {
     getSession()
       .then((session) => {
-        setEmail(session.idToken.payload.email);
         return getCVS(session.idToken.payload.email);
       })
       .then((data) => {
