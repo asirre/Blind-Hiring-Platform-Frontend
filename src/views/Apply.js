@@ -4,9 +4,15 @@ import Navbar from '../utils/Navbar'
 import JobsDescription from '../utils/JobsDescription'
 import { useLocation } from 'react-router-dom'
 import React from 'react';
+import RouteGuard from './RouteGuard';
 
 const Apply = () => {
   const { state } = useLocation();
+  if (localStorage.getItem("token") == undefined)
+  return (<div>
+    <RouteGuard/>
+  </div>)
+  else
   return (
     <>
       <div style={{ height: '100vh', width: '100vw' }}>

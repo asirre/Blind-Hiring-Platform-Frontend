@@ -5,6 +5,7 @@ import Navbar from "../utils/Navbar";
 import { useNavigate } from "react-router-dom";
 import { AccountContext } from '../Account';
 import axios from 'axios';
+import RouteGuard from './RouteGuard';
 
 const CV = () => {
 
@@ -15,6 +16,7 @@ const CV = () => {
   
   const hiddenFileInput = React.useRef(null);
   const navigate = useNavigate();
+
 
   const { getSession } = useContext(AccountContext);
   
@@ -38,11 +40,12 @@ const CV = () => {
 
   const approveCV = async event => {
 
-    if (selectFile != undefined) {
+    if (selectFile !== undefined) {
 
       var blob = new Blob([selectFile], {type : 'application/pdf'});
       var fileOfBlob = new File([blob], selectFile.name);
 
+      
 
       var config = {
         method: 'POST',
@@ -80,6 +83,11 @@ const CV = () => {
   };
 
 
+  if (localStorage.getItem("token") == undefined)
+  return (<div>
+    <RouteGuard/>
+  </div>)
+  else
   return (
     <>
       <Navbar/>

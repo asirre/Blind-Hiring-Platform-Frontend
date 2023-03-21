@@ -5,6 +5,7 @@ import Navbar from "../utils/Navbar";
 import { useNavigate } from "react-router-dom";
 import { AccountContext } from '../Account';
 import axios from 'axios';
+import RouteGuard from './RouteGuard';
 
 const JobUpload = () => {
 
@@ -23,7 +24,6 @@ const JobUpload = () => {
   const [contract, setContract] = useState();
   const [employment, setEmployment] = useState("full-time");
   const [description, setDescription] = useState();
-  const [logo, setLogo] = useState();
   
   const hiddenImageInput = React.useRef(null);
   const navigate = useNavigate();
@@ -76,10 +76,6 @@ const JobUpload = () => {
 
   function changePosition(event) {
     setPosition(event.target.value);
-  }
-
-  function changeUntil(event) {
-    setUntil(event.target.value);
   }
 
   function changeMin(event) {
@@ -185,6 +181,11 @@ const JobUpload = () => {
   }
 
 
+  if (localStorage.getItem("token") == undefined)
+    return (<div>
+      <RouteGuard/>
+    </div>)
+  else
   return (
     <>
       <Navbar/>

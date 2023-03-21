@@ -1,21 +1,3 @@
-import {
-  CNavLink,
-  CNav,
-  CDropdown,
-  CDropdownItem,
-  CDropdownMenu,
-  CDropdownToggle,
-  CNavbarToggler,
-  CNavbar,
-  CContainer,
-  CNavbarBrand,
-  CDropdownDivider,
-  CCollapse,
-  CNavbarNav,
-  CNavItem,
-} from "@coreui/react";
-import { CIcon } from "@coreui/icons-react";
-import { cilUser } from "@coreui/icons";
 import Pool from '../views/UserPool';
 import { AccountContext } from "../Account";
 import { useContext } from "react";
