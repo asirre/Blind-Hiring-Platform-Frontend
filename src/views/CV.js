@@ -3,7 +3,7 @@ import { CButton, CCol, CCard, CCardText, CCardBody, CRow } from "@coreui/react"
 import BottomInfo from "../utils/BottomInfo";
 import Navbar from "../utils/Navbar";
 import { useNavigate } from "react-router-dom";
-import { uploadCV } from '../utils/upload_file_to_s3_example';
+// import { uploadCV } from '../utils/upload_file_to_s3_example';
 import { AccountContext } from '../Account';
 import axios from 'axios';
 
@@ -21,7 +21,6 @@ const CV = () => {
   
   const uploadFile = () => {
     hiddenFileInput.current.click();
-    getSession();
   };
 
   function handleChange(event) {
@@ -56,8 +55,9 @@ const CV = () => {
         data : fileOfBlob
       };
 
-      await uploadCV(config)
+      await axios(config)
         .then( async function (response) {
+          console.log(response)
           var config = {
             method: 'POST',
             url: 'https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/user-metadata/'+ email,
@@ -83,7 +83,7 @@ const CV = () => {
 
   return (
     <>
-      <Navbar isLoggedIn={false} />
+      <Navbar isLoggedIn={jwtToken?true:false} />
       <div style={{ width: "100%" }}>
         <CCol
           style={{
