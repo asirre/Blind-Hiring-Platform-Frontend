@@ -1,4 +1,4 @@
-import { CButton } from '@coreui/react'
+import { CButton, CSpinner } from '@coreui/react'
 import React, { useEffect, useState} from 'react'
 import Job from './Job'
 import {
@@ -7,12 +7,14 @@ import {
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([])
+  const [isLoading, setLoading] = useState(true)
 
 
   useEffect(() => {
     const getData = async () => {
       const response = await getAllJobs()
       setJobs(response)
+      setLoading(false)
     }
     getData()
   }, [])
