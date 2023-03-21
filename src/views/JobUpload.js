@@ -136,7 +136,7 @@ const JobUpload = () => {
       await axios(config)
         .then(function (response) {
           console.log(response.data);
-          navigate("/")
+          navigate("/jobs")
         })
         .catch(function (error) {
           console.log(error);

@@ -9,7 +9,7 @@ import { cilArrowRight } from "@coreui/icons";
 const Job = ({ job, index }) => {
   return (
     <>
-      <div className="job-card w-full flex rounded overflow-hidden bg-primaryTailwind border border-slate-600">
+      <div className="job-card w-full flex rounded justify-between overflow-hidden bg-slate-100 border border-gray-500">
         <div className="job-details py-3 px-4 flex flex-col">
           <div className="job-header mb-2 flex gap-3">
             <div className="job-image">
@@ -21,12 +21,12 @@ const Job = ({ job, index }) => {
             </div>
           </div>
           <div className="job-description flex-1">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
+            <p>{job.description}</p>
           </div>
           
         </div>
         <div className="job-apply w-1/5 flex justify-center items-center">
-          <CButton color="secondary" href="/apply"><CIcon color="primary" icon={cilArrowRight} size="xl" /></CButton>
+          <CButton color="secondary" href="/cv"><CIcon color="primary" icon={cilArrowRight} size="xl" /></CButton>
         </div>
       </div>
     </>
