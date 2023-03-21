@@ -58,7 +58,7 @@ const FeedbackView = () => {
 
   return (
     <div style={{ height: "100vh", width: "100vw" }}>
-      <Navbar isLoggedIn={true} />
+      <Navbar/>
       <CCol style={{ height: "74vh", width: "100vw", float: "left" }}>
         <div
           style={{

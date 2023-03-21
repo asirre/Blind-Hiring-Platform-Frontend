@@ -41,7 +41,7 @@ const NavbarLogout = ({children, onClick}) => {
     </a>
   )
 }
-const Navbar = ({ isLoggedIn }) => {
+const Navbar = () => {
 
 const { signout } = useContext(AccountContext);
 
@@ -54,6 +54,7 @@ const { signout } = useContext(AccountContext);
           </div>
           <div className="navbar-buttons col-span-3 col-start-4 h-full flex items-center justify-end">
           <NavbarButton href="/jobs">Job Listings</NavbarButton>
+          <NavbarButton href="/cv">Upload CV</NavbarButton>
           <NavbarButton href="/feedback">CV Feedback</NavbarButton>
           <NavbarLogout onClick={signout}>Sign out</NavbarLogout>
           </div>

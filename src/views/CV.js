@@ -3,7 +3,6 @@ import { CButton, CCol, CCard, CCardText, CCardBody, CRow } from "@coreui/react"
 import BottomInfo from "../utils/BottomInfo";
 import Navbar from "../utils/Navbar";
 import { useNavigate } from "react-router-dom";
-// import { uploadCV } from '../utils/upload_file_to_s3_example';
 import { AccountContext } from '../Account';
 import axios from 'axios';
 
@@ -72,7 +71,7 @@ const CV = () => {
         await axios(config)
         .then( function (response) {
 
-          navigate("/");
+          navigate("/feedback");
         });
         }
       );     
@@ -83,12 +82,13 @@ const CV = () => {
 
   return (
     <>
-      <Navbar isLoggedIn={jwtToken?true:false} />
-      <div style={{ width: "100%" }}>
+      <Navbar/>
+      <div style={{ width: "100%"}}>
         <CCol
           style={{
             backgroundColor: "#9DDAF6",
-            backgroundSize: "100% 100%"}}>
+            backgroundSize: "100% 100%",
+            minHeight: "100vh" }}>
           <div>
             <CRow>
               <CCol sm={6}>
@@ -120,7 +120,7 @@ const CV = () => {
                     <CButton
                       style={{ backgroundColor:"#3cb4d4", 
                         color: "white", 
-                        width:"15vw", 
+                        width:"13vw", 
                         height:"4vw" ,
                         fontSize:"2vw"}}
                       // color="light"
@@ -154,16 +154,18 @@ const CV = () => {
               }}
             >
               <CCardBody>
-                <CCardText >Overview:</CCardText>
+                <CCardText style={{ visibility: selectFile?"visible":"hidden"}}>Overview:</CCardText>
 
                 <iframe style={{ width: "100%", height:selectFile?"80vw":"0vw" }} src={selectFileURL}/>
 
                 <CButton
                   style={{ backgroundColor:"#3cb4d4", 
+                    marginTop:"2vw",
                     color: "white", 
-                    width:"15vw", 
+                    width:"13vw", 
                     height:"4vw" ,
-                    fontSize:"2vw"}}
+                    fontSize:"2vw",
+                    visibility: selectFile?"visible":"hidden"}}
                   onClick={approveCV}
                 >
                   Upload
@@ -172,8 +174,8 @@ const CV = () => {
             </CCard>
           </div>
         </CCol>
-        <BottomInfo />
       </div>
+      <BottomInfo />
     </>
   );
 };
