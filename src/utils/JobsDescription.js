@@ -31,29 +31,25 @@ const JobDescription = ({job}) => {
     }
 
     const sendJobUpdate = async () => {
-        const session = await getSession();
-        setEmail(session.idToken.payload.email);
-        console.log(email);
-
-        const cvs = await getCVs();
-        console.log(cvs);
-        setPath(cvs.cv);
-
-        // Dynamically create the data object
-        let candidates = cvPathList.map(cvPath => {
-            return {
-                "user_id": email,
-                "attached_cv": 'https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/cv-upload/' + cvPath
-            };
+        const session = await getSession().then(async (session) => {
+            const cvs = await getCVs().then((cvs) => {
+                console.log(cvs);
+                // Dynamically create the data object
+                let candidates = cvs.map(cvPath => {
+                    return {
+                        "user_id": session.idToken.payload.email,
+                        "attached_cv": 'https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/cv-upload/' + cvPath
+                    };
+                });
+                console.log(job);
+                let data = {
+                    "job_id": job.job_id,
+                    "candidates": candidates
+                };
+                console.log(data)
+                // updateJobPostings(data)
+            });
         });
-        console.log(job);
-        let data = {
-            "job_id": job.job_id,
-            "candidates": candidates
-        };
-        console.log(data)
-
-        updateJobPostings(data)
     }
 
     return (
