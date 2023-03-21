@@ -68,6 +68,7 @@ const FeedbackView = () => {
         return getCVS(session.idToken.payload.email);
       })
       .then((data) => {
+        console.log(data)
         callFeedback(data);
       })
       .catch((err) => console.log(err));
