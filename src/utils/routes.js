@@ -17,7 +17,6 @@ const routes = [
   { path: "/jobs", name: "Jobs", element: ListJobs, protected: false},
   { path: "/cv", name: "CV", element: CV, protected: false},
   { path: "/job-upload", name: "JobUpload", element: JobUpload, protected: false},
-  { path: "/job-upload", name: "JobUpload", element: JobUpload, protected: false},
   { path: "/terms-and-conditions", name: "TermsAndConditions", element: TermsAndConditions, protected: false},
   { path: "feedback", name: "Feedback", element: FeedbackView, protected: true},
   {
