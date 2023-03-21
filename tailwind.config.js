@@ -2,10 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
-    colors: {
-      primaryTailwind: "#EEEEEC",
-    }
+    extend: {
+      colors: {
+        primaryTailwind: "#EEEEEC",
+      },
+    },
   },
   plugins: [],
 }

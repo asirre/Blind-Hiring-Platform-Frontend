@@ -19,12 +19,6 @@ const ListJobs = () => {
           }}
         ></div>
         <Jobs/>
-        {/* <div
-          style={{
-            backgroundColor: "white",
-            height: "50vh",
-          }}
-        ></div> */}
         </CCol>
         <BottomInfo />
     </div>

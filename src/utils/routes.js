@@ -6,7 +6,7 @@ const Homepage = React.lazy(() => import("../views/Homepage"));
 const ListJobs = React.lazy(() => import("../views/ListJobs"));
 const CV = React.lazy(() => import("../views/CV"));
 const JobUpload = React.lazy(() => import("../views/JobUpload"));
-const Apply = React.lazy(() => import("../views/Apply"));
+const FeedbackView = React.lazy(() => import("../views/FeedbackView"));
 
 const routes = [
   { path: "/signup", name: "Sign up", element: SignUp, protected: false },
@@ -15,7 +15,7 @@ const routes = [
   { path: "/jobs", name: "Jobs", element: ListJobs, protected: false},
   { path: "/cv", name: "CV", element: CV, protected: false},
   { path: "/jobUpload", name: "JobUpload", element: JobUpload, protected: false},
-  { path: "/apply", name: "Apply", element: Apply, protected: false}
+  { path: "feedback", name: "Feedback", element: FeedbackView, protected: true},
 ];
 
 export default routes;
