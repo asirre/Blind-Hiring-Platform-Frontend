@@ -2,7 +2,7 @@ import { CButton } from '@coreui/react'
 import React, { useState, useContext, useEffect } from 'react'
 import placeholder from '../img/google_logo.png'
 import { AccountContext } from '../Account'
-import { updateJobPostings } from './update_job_posting'
+import { updateJobPostings } from './LambdaRequests'
 import axios from 'axios'
 
 const JobDescription = ({ job }) => {
@@ -41,12 +41,16 @@ const JobDescription = ({ job }) => {
 
   console.log(job)
   const sendJobUpdate = () => {
-    var data =
-      '{\n  "candidates": [\n    {\n      "user_id": "' +
-      email +
-      '",\n      "application_date": "21.03.2020",\n      "attached_cv": https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/cv-upload/"' +
-      cvPath +
-      '"\n    }\n  ]\n}'
+    var data = {
+      candidates: [
+        {
+          user_id: email,
+          attached_cv:
+            'https://2etnadonz2.execute-api.eu-west-1.amazonaws.com/prod/cv-upload/' +
+            cvPath,
+        },
+      ],
+    }
 
     updateJobPostings(data)
   }
