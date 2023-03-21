@@ -1,31 +1,11 @@
-import React, { useState, useContext, useEffect, getSession } from "react";
-import { CCol, CRow, CSpinner, CButton } from "@coreui/react";
+import React, { useState, useContext, useEffect } from "react";
+import { CCol, CSpinner } from "@coreui/react";
 import BottomInfo from "../utils/BottomInfo";
 import Navbar from "../utils/Navbar";
 import Feedback from "../utils/Feedback";
 import { getUsersCVS, getCVFeedback } from "../utils/LambdaRequests";
 import { AccountContext } from "../Account";
 
-const testFeedback = [
-  {
-    key : "CV_1",
-    FACES : [1],
-    DATE : [2],
-    GPE : [5],
-    NORP : [1555678],
-    PERSON : [],
-    PRONOUNS : [3],
-  },
-  {
-    key : "CV_2",
-    FACES : [],
-    DATE : [],
-    GPE : [],
-    NORP : [],
-    PERSON : [],
-    PRONOUNS : [],
-  }
-]
 
 const FeedbackView = () => {
   const [isLoading, setLoading] = useState(true);
@@ -49,7 +29,6 @@ const FeedbackView = () => {
           setFeedback([...feedbackSet]);
         })
         .then(() => {
-          // console.log(feedback)
           setLoading(false);
         });
     });
@@ -57,8 +36,8 @@ const FeedbackView = () => {
 
   const getCVS = async (email) => {
     const response = await getUsersCVS(email);
-    setUsersCVS(["CV-Lebenslauf-Germany-English-page+1.pdf", "CV2.pdf"]);
-    return ["CV-Lebenslauf-Germany-English-page+1.pdf", "CV2.pdf"];
+    setUsersCVS(response.cv);
+    return response.cv;
   };
 
   useEffect(() => {
@@ -68,7 +47,6 @@ const FeedbackView = () => {
         return getCVS(session.idToken.payload.email);
       })
       .then((data) => {
-        console.log(data)
         callFeedback(data);
       })
       .catch((err) => console.log(err));
@@ -101,7 +79,7 @@ const FeedbackView = () => {
             {isLoading ? (
               <CSpinner />
             ) : (
-              testFeedback.map((cv_feedback, index) => (
+              feedback.map((cv_feedback, index) => (
                 <Feedback cv_feedback={cv_feedback} index={index} />
               ))
             )}

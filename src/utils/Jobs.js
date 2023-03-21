@@ -21,13 +21,6 @@ const Jobs = () => {
     setLoading(false);
   }, []);
 
-  useEffect(() => {
-    const getData = async () => {
-      const response = await createJobPosting();
-    };
-    getData();
-  }, []);
-
   return (
     <div className="w-4/5 h-4/5 z-10 mx-auto mt-20 flex flex-col">
       <div
