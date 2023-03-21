@@ -14,8 +14,8 @@ class App extends Component {
           <AppRouter />
         </BrowserRouter>
       </Account>
-    );
+    )
   }
 }
 
-export default App;
+export default App
