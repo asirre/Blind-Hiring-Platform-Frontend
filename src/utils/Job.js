@@ -40,7 +40,7 @@ const Job = ({ job, index }) => {
             <p>{job.description}</p>
           </div>
         </div>
-        <div className="job-apply w-1/5 flex justify-center items-center">
+        <div className="job-apply mx-8 flex justify-center items-center">
           <CButton
             onClick={handleClick}
             color="secondary"
