@@ -1,4 +1,4 @@
-import { CCol, CRow } from "@coreui/react";
+import { CCol } from "@coreui/react";
 import BottomInfo from "../utils/BottomInfo";
 import Navbar from "../utils/Navbar";
 import Jobs from "../utils/Jobs";
@@ -19,12 +19,6 @@ const ListJobs = () => {
           }}
         ></div>
         <Jobs/>
-        {/* <div
-          style={{
-            backgroundColor: "white",
-            height: "50vh",
-          }}
-        ></div> */}
         </CCol>
         <BottomInfo />
     </div>

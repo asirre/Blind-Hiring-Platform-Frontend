@@ -29,14 +29,16 @@ const Jobs = () => {
         id='Jobs'
         className='h-4/5 w-4/5 float-left mx-auto flex-grow overflow-y-scroll'
       >
-        <ul className='w-full flex flex-col gap-4'>
-          {jobs.map((job, index) => (
-            <Job job={job} index={index} />
-          ))}
+        <ul className="w-full flex flex-col gap-4">
+          {isLoading ? (
+            <CSpinner style={{marginTop:"15%", marginLeft: "45%"}} />
+          ) : (
+            jobs.map((job, index) => <Job job={job} index={index} />)
+          )}
         </ul>
       </div>
-      <div className='flex w-4/5 mx-auto justify-end pt-4' id='button'>
-        <CButton href='/add-job'>Add posting</CButton>
+      <div className="flex w-4/5 mx-auto justify-end pt-4" id="button">
+        <CButton href="/jobUpload">Add posting</CButton>
       </div>
     </div>
   )
