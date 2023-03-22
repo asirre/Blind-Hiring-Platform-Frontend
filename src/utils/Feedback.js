@@ -21,7 +21,6 @@ const FeedbackPoint = ({ name, count }) => {
 };
 
 const Feedback = ({ cv_feedback }) => {
-  console.log(cv_feedback);
 
   const hasPassedVerification = () => {
     return (
@@ -59,7 +58,7 @@ const Feedback = ({ cv_feedback }) => {
           if (cv_feedback[name].length === 0 || name === "key") {
             return null;
           }
-          return <FeedbackPoint name={name} count={cv_feedback[name][0]} />;
+          return <FeedbackPoint name={name} count={cv_feedback[name].length} />;
         })}
       </div>
     </div>
