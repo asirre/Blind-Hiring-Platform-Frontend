@@ -96,7 +96,9 @@ const CV = () => {
           style={{
             backgroundColor: "#9DDAF6",
             backgroundSize: "100% 100%",
-            height: "73.5vh" }}>
+            }}
+          className="h-100"
+        >
           <div>
             <CRow>
               <CCol sm={6}>
